@@ -4,7 +4,7 @@
     enable = true;
     
     userName = "gibbyDev";
-    userEmail = "gibbyDEV2protonmail.com";
+    userEmail = "gibbyDEV@protonmail.com";
     
     extraConfig = { 
       init.defaultBranch = "main";
