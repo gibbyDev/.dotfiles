@@ -4,6 +4,7 @@
     ./hyprland
     ./firefox
     ./rofi
+    ./tmux
     ./misc
     ./waybar
     ./yazi

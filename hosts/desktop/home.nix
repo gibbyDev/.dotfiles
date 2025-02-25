@@ -1,41 +1,44 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, src, ... }:
 
 {
   imports = [
     ../../modules
-    #./home-modules/kitty.nix
-    #./home-modules/hyprland.nix
-    #./home-modules/firefox.nix
-    #./home-modules/rofi.nix
-    #./home-modules/btop.nix
-    # ./home-modules/pywal.nix
-    #./home-modules/yazi.nix
-    #./home-modules/nvim.nix
   ];
 
   home.username = "cody";
   home.homeDirectory = "/home/cody";
+  home.stateVersion = "24.11";
 
-  home.stateVersion = "24.11"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = with pkgs; [
-     hello
-     kitty
-     swww
-     pywal
+    hello
+    kitty
+    neofetch
+    fastfetch
+    tree
+    git
+    swww
+    pywal
+    bat
   ];
 
-  home.file = {
+  # Copy all scripts from ./scripts into ~/.local/share/bin
+#  home.file.".local/share/bin/set-wallpaper.sh" = {
+#    source = "../../scripts/set-wallpaper.sh";
+#    recursive = true;
+#  };
 
-  };
+  # Use a custom script to copy wallpapers to the correct location
+#  home.activation.wallpapers = lib.hm.dag.entryAfter ["writeBoundary"] ''
+#    mkdir -p "$HOME/Pictures/wallpapers"
+#    cp -r ../../wallpapers/* "$HOME/Pictures/wallpapers/"
+#  '';
 
- 
-  home.sessionVariables = {
-    # EDITOR = "vim";
-  };
+#  home.activation.makeScriptsExecutable = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+#    chmod +x "$HOME/.local/share/bin/"*
+#  '';
 
-  # Let Home Manager install and manage itself.
+#  home.sessionPath = [ "$HOME/.local/share/bin" ];
+
   programs.home-manager.enable = true;
 }
+

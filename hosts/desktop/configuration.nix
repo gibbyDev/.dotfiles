@@ -67,7 +67,7 @@
     jack.enable = true;
   };
 
-    programs.hyprland.enable = true;
+  programs.hyprland.enable = true;
   programs.git.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
