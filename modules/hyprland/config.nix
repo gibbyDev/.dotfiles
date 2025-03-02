@@ -51,9 +51,6 @@
 
       decoration = {
         rounding = 10;
-#active_opacity = 0.95;
-#inactive_opacity = 0.90;
-#fullscreen_opacity = 1.0;
 
         blur = {
           enabled = false;
@@ -92,7 +89,7 @@
           "ALT, Return, fullscreen"
           "SUPER, L, exec, swaylock"
           "SUPER+SHIFT, F, exec, $HOME/.local/share/bin/windowpin.sh"
-          "SUPER, Backspace, exec, $HOME/.local/share/bin/logoutlaunch.sh"
+          "SUPER, Backspace, exec, wlogout"
 
 # Applications
           "SUPER, T, exec, kitty"
@@ -214,7 +211,7 @@
           ];
 
       windowrulev2 = [
-        "opacity 0.86 0.80,class:^(firefox)$"
+          "opacity 0.90 0.80,class:^(firefox)$"
           "opacity 0.90 0.90,class:^(Google-chrome)$"
           "opacity 0.90 0.90,class:^(Brave-browser)$"
           "opacity 0.80 0.80,class:^(code-oss)$"

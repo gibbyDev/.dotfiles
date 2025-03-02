@@ -5,7 +5,7 @@
     ./gtk.nix
     ./btop.nix
     #./lf.nix
-    #./mako.nix
+    ./wlogout.nix
     ./pywal.nix
     #./others.nix
     #./starship.nix

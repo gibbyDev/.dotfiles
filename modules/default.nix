@@ -6,6 +6,7 @@
     ./rofi
     ./tmux
     ./misc
+    ./dolphin
     ./waybar
     ./yazi
     ./nvim
