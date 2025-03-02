@@ -1,6 +1,6 @@
 {
   imports = [
-    #./discord.nix
+    ./discord.nix
     ./git.nix
     ./gtk.nix
     ./btop.nix
@@ -9,7 +9,7 @@
     ./pywal.nix
     #./others.nix
     #./starship.nix
-    #./spotify.nix
+    ./spotify.nix
     ./zsh.nix
 #    ./tmux.nix
   ];

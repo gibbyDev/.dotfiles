@@ -1,17 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  programs.dolphin = {
-    enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     dolphin
-    kio-extras  # Adds additional protocol support (e.g., FTP, SFTP, SMB)
     ffmpegthumbs # Enables video thumbnails in Dolphin
-  ];
+  ] ++ (pkgs.lib.optionals (pkgs ? kio-extras) [ pkgs.kio-extras ]);
 
-  # Optional: If using Hyprland or other non-KDE environments
-  services.dbus.enable = true;
 }
 

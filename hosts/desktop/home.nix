@@ -11,6 +11,8 @@
 
   home.packages = with pkgs; [
     hello
+    libsForQt5.qt5ct
+#    libsForQt6.qt6ct
     kitty
     neofetch
     fastfetch
@@ -20,6 +22,13 @@
     pywal
     bat
   ];
+
+  xdg.configFile."kdeglobals".text = ''
+    [General]
+    ColorScheme=BreezeDark
+    Name=BreezeDark
+  '';
+
 
   # Copy all scripts from ./scripts into ~/.local/share/bin
 #  home.file.".local/share/bin/set-wallpaper.sh" = {
