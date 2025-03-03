@@ -12,7 +12,7 @@ let
     
     button {
         background-color: transparent;
-        color: #cdd6f4;
+        color: transparent;
         border-radius: 10px;
         border: 2px solid #89b4fa;
         padding: 10px;

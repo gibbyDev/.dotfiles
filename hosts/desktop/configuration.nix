@@ -110,6 +110,7 @@
      gcc
      networkmanagerapplet
      pywalfox-native
+     xfce.thunar
      #neovim
   ];
 

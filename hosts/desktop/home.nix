@@ -10,8 +10,10 @@
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-    hello
     kitty
+    obs-studio
+    ffmpeg
+    gimp
     neofetch
     fastfetch
     tree
@@ -24,22 +26,18 @@
   nixpkgs.config.allowUnfree = true;
 
   # Copy all scripts from ./scripts into ~/.local/share/bin
-#  home.file.".local/share/bin/set-wallpaper.sh" = {
-#    source = "../../scripts/set-wallpaper.sh";
-#    recursive = true;
-#  };
+  home.activation.copyScripts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p ~/.local/share/bin
+    rm -rf ~/.local/share/bin/*  # Remove old scripts
+    cp -r ${../../scripts}/* ~/.local/share/bin/
+    chmod +x ~/.local/share/bin/*
+  '';
 
-  # Use a custom script to copy wallpapers to the correct location
-#  home.activation.wallpapers = lib.hm.dag.entryAfter ["writeBoundary"] ''
-#    mkdir -p "$HOME/Pictures/wallpapers"
-#    cp -r ../../wallpapers/* "$HOME/Pictures/wallpapers/"
-#  '';
-
-#  home.activation.makeScriptsExecutable = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-#    chmod +x "$HOME/.local/share/bin/"*
-#  '';
-
-#  home.sessionPath = [ "$HOME/.local/share/bin" ];
+  home.activation.copyWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p ~/Pictures/wallpapers
+    rm -rf ~/Pictures/wallpapers/*  # Remove old scripts
+    cp -r ${../../wallpapers}/* ~/Pictures/wallpapers/
+  '';
 
   programs.home-manager.enable = true;
 }

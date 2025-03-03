@@ -4,6 +4,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
 
     initExtra = ''
       # Powerlevel10k Theme
@@ -13,15 +14,21 @@
       # zsh-autosuggestions
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-      # zsh-syntax-highlighting
-      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      # Ensure fpath includes syntax-highlighting
+      fpath=(${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting $fpath)
 
-      # Optional Pywal + Kitty Reload Alias
-      alias reloadkitty="kitty @ set-colors ~/.cache/wal/kitty/kitty.conf"
+      # zsh-syntax-highlighting (must be last)
+      if [[ -f ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      else
+        echo "zsh-syntax-highlighting not found!"
+      fi
     '';
+
 
     shellAliases = {
       ll = "ls -la";
+      hmr = "home-manager switch --flake .";
       reload = "exec zsh";
     };
   };

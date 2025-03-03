@@ -4,7 +4,7 @@
     ./git.nix
     ./gtk.nix
     ./btop.nix
-    ./thunar.nix
+#    ./thunar.nix
     ./wlogout.nix
     ./pywal.nix
     #./others.nix
