@@ -1,92 +1,97 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];  # Include hardware scan results.
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Detroit";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  # Bootloader Configuration
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda";
+    useOSProber = true;
   };
 
+  # System Settings
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;  # Enable NetworkManager
+  };
 
-  # Enable Display Manager
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
+  time.timeZone = "America/Detroit";
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    v4l2loopback
+  ];
+
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=10 card_label="DroidCam" exclusive_caps=1
+  '';
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+  };
+
+  # User Configuration
+  users.users.cody = {
+    isNormalUser = true;
+    description = "cody";
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "qemu" ];
+    packages = with pkgs; [];
+  };
+
+  # Display & Audio Configuration
+  services = {
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
+    };
+
+    displayManager.sddm.enable = true;
+
+    greetd = {
+      enable = true;
+      settings.default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
         user = "greeter";
       };
     };
-  };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-#  services.desktopManager.plasma5.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  programs.hyprland.enable = true;
-  programs.git.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.cody = {
-    isNormalUser = true;
-    description = "cody";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
-
- # Fonts
-  fonts = {
-    fontconfig = {
+    pipewire = {
       enable = true;
-      defaultFonts = {
-        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
-      };
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
     };
-   packages = with pkgs; [
+  };
+
+  # Hyprland Window Manager
+  programs.hyprland.enable = true;
+
+  # Virtualization (KVM/QEMU)
+  virtualisation = {
+    libvirtd.enable = true;
+    kvmgt.enable = true;
+  };
+
+  boot.kernelModules = [ "kvm" "kvm-intel" ];  # Use "kvm-amd" if using AMD CPU
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Fonts Configuration
+  fonts = {
+    fontconfig.enable = true;
+    fontconfig.defaultFonts.monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+    packages = with pkgs; [
       nerd-fonts.meslo-lg
       nerd-fonts.jetbrains-mono
       nerd-fonts.agave
@@ -94,37 +99,36 @@
       powerline-fonts
       powerline-symbols
     ];
-
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # System Packages
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     git
-     cmake
-     greetd.tuigreet
-     gcc
-     networkmanagerapplet
-     pywalfox-native
-     xfce.thunar
-     #neovim
+    vim
+    wget
+    git
+    cmake
+    gcc
+    gdb
+    greetd.tuigreet
+    networkmanagerapplet
+    pywalfox-native
+    linuxPackages.v4l2loopback  # Kernel module for virtual webcam
+    alsa-utils  # Audio support
+    v4l-utils   # Video4Linux tools
+    pulseaudio  # If you want audio support
+    qemu
+    libvirt
+    virt-manager
+    bridge-utils  # For networking support
+    dnsmasq       # DHCP for VM networking
+    ebtables      # NAT support for VMs
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  # Miscellaneous Settings
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # List services that you want to enable:
-  system.stateVersion = "24.11"; # Did you read the comment?
-
-  nix.settings.experimental-features =  [ "nix-command" "flakes" ];
-
+  # System State Version
+  system.stateVersion = "24.11";
 }
+

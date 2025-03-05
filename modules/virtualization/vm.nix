@@ -4,6 +4,11 @@
   environment.systemPackages = with pkgs; [
     qemu
     libvirt
+    uefi-run
+    lxc
+    swtpm
+    bottles
+    dosfstools
     virt-manager
     virt-viewer
     dnsmasq

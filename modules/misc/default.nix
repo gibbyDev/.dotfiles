@@ -7,9 +7,9 @@
 #    ./thunar.nix
     ./wlogout.nix
     ./pywal.nix
-    #./others.nix
+    ./shell.nix
     #./starship.nix
-    ./spotify.nix
+    #./spotify.nix
     ./zsh.nix
 #    ./tmux.nix
   ];

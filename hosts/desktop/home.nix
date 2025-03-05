@@ -13,11 +13,13 @@
     kitty
     obs-studio
     ffmpeg
+    unzip
     gimp
     neofetch
     fastfetch
     tree
     git
+    nodejs_20
     swww
     pywal
     bat

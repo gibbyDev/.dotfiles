@@ -20,6 +20,7 @@ in
     enable = true;
     defaultEditor = true;
     package = pkgs.neovim-unwrapped;
+    extraPackages = with pkgs; [ wl-clipboard xclip xsel ];
   };
 }
 
