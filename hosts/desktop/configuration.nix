@@ -28,7 +28,6 @@
 
   virtualisation.docker.enable = true;
 
-
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -59,29 +58,22 @@
       xkb.layout = "us";
     };
 
-    displayManager.sddm.enable = true;
-
-    greetd = {
+    displayManager.sddm = {
       enable = true;
-      settings.default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
-        user = "greeter";
-      };
+      theme = "Corners";  # Set SDDM Corners theme
     };
 
-  # sound.enable = false;
-  #hardware.pulseaudio.enable = false;
+    desktopManager.plasma6.enable = false; # Ensure Plasma doesn't interfere with Hyprland
 
-  # security.rtkit.enable = true;
-
+    # PipeWire audio setup
     pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-      };
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
     };
+  };
 
   # Hyprland Window Manager
   programs.hyprland.enable = true;
@@ -97,8 +89,6 @@
     "kvm-intel"
     "v4l2loopback"
   ]; 
-
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Fonts Configuration
   fonts = {
@@ -122,7 +112,6 @@
     cmake
     gcc
     gdb
-    greetd.tuigreet
     networkmanagerapplet
     pywalfox-native
     droidcam
@@ -131,7 +120,6 @@
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support
     v4l-utils   # Video4Linux tools
-    #pulseaudio  # If you want audio support
     pipewire
     qemu
     libvirt
@@ -139,6 +127,7 @@
     bridge-utils  # For networking support
     dnsmasq       # DHCP for VM networking
     ebtables      # NAT support for VMs
+    catppuccin-sddm-corners  # SDDM Corners theme
   ];
 
   # Miscellaneous Settings
