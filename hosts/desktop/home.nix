@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     kitty
     obs-studio
+    docker
     ffmpeg
     unzip
     gimp

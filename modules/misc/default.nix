@@ -4,10 +4,10 @@
     ./git.nix
     ./gtk.nix
     ./btop.nix
-#    ./thunar.nix
+    ./pipewire.nix
     ./wlogout.nix
     ./pywal.nix
-    ./shell.nix
+    #./shell.nix
     #./starship.nix
     #./spotify.nix
     ./zsh.nix

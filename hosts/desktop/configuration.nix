@@ -18,13 +18,16 @@
 
   time.timeZone = "America/Detroit";
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    v4l2loopback
+  boot.extraModulePackages = [
+    pkgs.linuxPackages.v4l2loopback
   ];
 
   boot.extraModprobeConfig = ''
     options v4l2loopback devices=1 video_nr=10 card_label="DroidCam" exclusive_caps=1
   '';
+
+  virtualisation.docker.enable = true;
+
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -45,7 +48,7 @@
   users.users.cody = {
     isNormalUser = true;
     description = "cody";
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "qemu" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "qemu" "docker" ];
     packages = with pkgs; [];
   };
 
@@ -84,8 +87,13 @@
     kvmgt.enable = true;
   };
 
-  boot.kernelModules = [ "kvm" "kvm-intel" ];  # Use "kvm-amd" if using AMD CPU
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [
+    "kvm" 
+    "kvm-intel"
+    "v4l2loopback"
+  ]; 
+
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Fonts Configuration
   fonts = {
@@ -112,6 +120,9 @@
     greetd.tuigreet
     networkmanagerapplet
     pywalfox-native
+    droidcam
+    android-tools
+    adb-sync
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support
     v4l-utils   # Video4Linux tools
