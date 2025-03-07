@@ -69,14 +69,19 @@
       };
     };
 
+  # sound.enable = false;
+  #hardware.pulseaudio.enable = false;
+
+  # security.rtkit.enable = true;
+
     pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+      };
     };
-  };
 
   # Hyprland Window Manager
   programs.hyprland.enable = true;
@@ -126,7 +131,8 @@
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support
     v4l-utils   # Video4Linux tools
-    pulseaudio  # If you want audio support
+    #pulseaudio  # If you want audio support
+    pipewire
     qemu
     libvirt
     virt-manager

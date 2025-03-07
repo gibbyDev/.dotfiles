@@ -7,7 +7,7 @@
     ./pipewire.nix
     ./wlogout.nix
     ./pywal.nix
-    #./shell.nix
+    ./obsidian.nix
     #./starship.nix
     #./spotify.nix
     ./zsh.nix
