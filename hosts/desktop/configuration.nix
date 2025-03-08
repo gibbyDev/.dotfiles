@@ -107,6 +107,7 @@
   # System Packages
   environment.systemPackages = with pkgs; [
     vim
+    vscode
     wget
     git
     cmake

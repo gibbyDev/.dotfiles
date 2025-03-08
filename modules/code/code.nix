@@ -2,19 +2,14 @@
 { pkgs, ... }:
 
 {
-  # Add Visual Studio Code to system packages
-  environment.systemPackages = with pkgs; [
-    vscode  # The Visual Studio Code package from Nixpkgs
-  ];
-
   # Optional: Enable the VSCode extensions (if you need a specific extension set)
   programs.vscode = {
     enable = true;
-    extensions = [
-      "ms-python.python"
-      "ms-vscode.cpptools"
-      "esbenp.prettier-vscode"
-      "github.copilot"
+    extensions = with pkgs.vscode-extensions; [
+      ms-python.python
+      ms-vscode.cpptools
+      esbenp.prettier-vscode
+      github.copilot
       # Add more extensions as you need
     ];
   };

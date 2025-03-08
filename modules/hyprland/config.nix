@@ -151,21 +151,19 @@
           "SUPER, mouse_down, workspace, e+1"
           "SUPER, mouse_up, workspace, e-1"
 
-# Move/Resize focused window
-#"SUPER, mouse:272, movewindow"
-#"SUPER, mouse:273, resizewindow"
-#"SUPER, Z, movewindow"
-#"SUPER, X, resizewindow"
+            # Move/Resize focused window
+            #"SUPER, mouse:272, movewindow"
+            #"SUPER, Z, movewindow"
+            #"SUPER, X, resizewindow"
 
-# Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
-#"$moveactivewindow=grep -q "true" <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive"
-#"SUPER+Shift+Ctrl, left,Move activewindow to the right,exec, $moveactivewindow -30 0 || hyprctl dispatch movewindow l"
-#"SUPER+Shift+Ctrl, right,Move activewindow to the right,exec, $moveactivewindow 30 0 || hyprctl dispatch movewindow r"
-#"SUPER+Shift+Ctrl, up,Move activewindow to the right,exec, $moveactivewindow  0 -30 || hyprctl dispatch movewindow u"
-#"SUPER+Shift+Ctrl, down,Move activewindow to the right,exec, $moveactivewindow 0 30 || hyprctl dispatch movewindow d"
+            # Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
+            #"$moveactivewindow=grep -q 'true' <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive"
+            #"SUPER+Shift+Ctrl, left, Move active window to the left, exec, $moveactivewindow -30 0 || hyprctl dispatch movewindow l"
+            #"SUPER+Shift+Ctrl, right, Move active window to the right, exec, $moveactivewindow 30 0 || hyprctl dispatch movewindow r"
+            #"SUPER+Shift+Ctrl, up, Move active window up, exec, $moveactivewindow 0 -30 || hyprctl dispatch movewindow u"
+            #"SUPER+Shift+Ctrl, down, Move active window down, exec, $moveactivewindow 0 30 || hyprctl dispatch movewindow d"
 
-
-# Workspace toggles
+            # Workspace toggles
           "SUPER, 1, workspace, 1"
           "SUPER, 2, workspace, 2"
           "SUPER, 3, workspace, 3"
@@ -187,9 +185,6 @@
           "SUPER+SHIFT, 8, movetoworkspace, 8"
           "SUPER+SHIFT, 9, movetoworkspace, 9"
           "SUPER+SHIFT, 0, movetoworkspace, 10"
-
-          "SUPER, mouse_down, workspace, e+1"
-          "SUPER, mouse_up, workspace, e-1"
 
 # Move/Switch to special workspace (scratchpad)
           "SUPER+Alt, S, movetoworkspacesilent, special"
