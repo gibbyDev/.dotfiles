@@ -21,11 +21,11 @@
 
   # Optional: Configure the VSCode settings (this can also be done in the settings UI)
   # Example: to change the color theme or editor settings:
-  environment.etc."vscode/settings.json".text = ''
-    {
-      "editor.fontSize": 14,
-      "workbench.colorTheme": "Visual Studio Dark"
-    }
-  '';
+#  environment.etc."vscode/settings.json".text = ''
+#    {
+#      "editor.fontSize": 14,
+ #     "workbench.colorTheme": "Visual Studio Dark"
+#    }
+#  '';
 }
 

@@ -7,7 +7,7 @@
     
     extraConfig = { 
       init.defaultBranch = "main";
-#      credential.helper = "store";
+      credential.helper = "store";
     };
   };
 
