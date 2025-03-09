@@ -117,6 +117,8 @@
     pywalfox-native
     droidcam
     android-tools
+    davinci-resolve
+    vlc
     adb-sync
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support

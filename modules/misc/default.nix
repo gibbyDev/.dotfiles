@@ -11,6 +11,5 @@
     #./starship.nix
     #./spotify.nix
     ./zsh.nix
-#    ./tmux.nix
   ];
 }
