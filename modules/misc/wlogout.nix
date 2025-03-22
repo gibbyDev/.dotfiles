@@ -2,6 +2,9 @@
 
 let
   customStyle = builtins.toFile "wlogout.css" ''
+    
+    @import url("colors-waybar.css");
+
     * {
         font-family: "JetBrainsMono Nerd Font", sans-serif;
     }
@@ -11,17 +14,19 @@ let
     }
     
     button {
-        background-color: transparent;
-        color: transparent;
+        background-color: @color0;
+        color: @color4;
         border-radius: 10px;
-        border: 2px solid #89b4fa;
-        padding: 10px;
-        margin: 10px;
+        border: 2px solid @color4;
+        padding: 5px;
+        margin: 5px;
+        transition: all 0.3s ease;
     }
     
     button:focus, button:hover {
-        background-color: #89b4fa;
-        color: #1e1e2e;
+        background-color: @color0;
+        color: @color4;
+        transform: scale(1.2);
     }
   '';
 

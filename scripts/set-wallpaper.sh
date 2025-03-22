@@ -40,6 +40,8 @@ set_wallpaper() {
     # Copy the generated Waybar color scheme
     cp "$HOME/.cache/wal/colors-waybar.css" "$WAYBAR_CONFIG_DIR/colors-waybar.css"
 
+    cp "$HOME/.cache/wal/colors-waybar.css" "$HOME/.config/wlogout/colors-waybar.css"
+
     cp "$HOME/.cache/wal/colors-wal.vim" "$HOME/.config/nvim/colors-wal.vim"
 
     # Extract only the color variables from the rofi file

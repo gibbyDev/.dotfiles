@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];  # Include hardware scan results.
@@ -60,7 +60,7 @@
 
     displayManager.sddm = {
       enable = true;
-      theme = "Corners";  # Set SDDM Corners theme
+      theme = "sddm-sugar-dark"; # Set SDDM theme directly
     };
 
     desktopManager.plasma6.enable = false; # Ensure Plasma doesn't interfere with Hyprland
@@ -73,6 +73,7 @@
       pulse.enable = true;
       jack.enable = true;
     };
+
   };
 
   # Hyprland Window Manager
@@ -110,6 +111,8 @@
     vscode
     wget
     git
+    gnumake42
+    go
     cmake
     gcc
     gdb
@@ -120,6 +123,7 @@
     davinci-resolve
     vlc
     adb-sync
+    libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support
     v4l-utils   # Video4Linux tools
@@ -130,8 +134,29 @@
     bridge-utils  # For networking support
     dnsmasq       # DHCP for VM networking
     ebtables      # NAT support for VMs
-    catppuccin-sddm-corners  # SDDM Corners theme
+
+    # Add the custom SDDM Sugar Candy theme package
+    (pkgs.stdenv.mkDerivation {
+      pname = "sugar-candy-sddm-theme";
+      version = "latest";
+      src = pkgs.fetchFromGitHub {
+        owner = "MarianArlt";
+        repo = "sddm-sugar-dark";
+        rev = "master";
+        sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy"; # Replace with the actual sha256 hash
+      };
+      installPhase = ''
+        mkdir -p $out/share/sddm/themes/sddm-sugar-dark
+        cp -r * $out/share/sddm/themes/sddm-sugar-dark
+      '';
+    })
   ];
+
+  # Specify the SDDM theme configuration
+#  environment.etc."sddm.conf".text = lib.mkForce ''
+#    [Theme]
+#    Current=sugar-candy
+#  '';
 
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
