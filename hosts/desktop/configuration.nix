@@ -3,12 +3,8 @@
 {
   imports = [ ./hardware-configuration.nix ];  # Include hardware scan results.
 
-  # Bootloader Configuration
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";
-    useOSProber = true;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # System Settings
   networking = {
@@ -17,16 +13,6 @@
   };
 
   time.timeZone = "America/Detroit";
-
-  boot.extraModulePackages = [
-    pkgs.linuxPackages.v4l2loopback
-  ];
-
-  boot.extraModprobeConfig = ''
-    options v4l2loopback devices=1 video_nr=10 card_label="DroidCam" exclusive_caps=1
-  '';
-
-  virtualisation.docker.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -57,13 +43,6 @@
       enable = true;
       xkb.layout = "us";
     };
-
-    displayManager.sddm = {
-      enable = true;
-      theme = "sddm-sugar-dark"; # Set SDDM theme directly
-    };
-
-    desktopManager.plasma6.enable = false; # Ensure Plasma doesn't interfere with Hyprland
 
     # PipeWire audio setup
     pipewire = {
@@ -135,21 +114,6 @@
     dnsmasq       # DHCP for VM networking
     ebtables      # NAT support for VMs
 
-    # Add the custom SDDM Sugar Candy theme package
-    (pkgs.stdenv.mkDerivation {
-      pname = "sugar-candy-sddm-theme";
-      version = "latest";
-      src = pkgs.fetchFromGitHub {
-        owner = "MarianArlt";
-        repo = "sddm-sugar-dark";
-        rev = "master";
-        sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy"; # Replace with the actual sha256 hash
-      };
-      installPhase = ''
-        mkdir -p $out/share/sddm/themes/sddm-sugar-dark
-        cp -r * $out/share/sddm/themes/sddm-sugar-dark
-      '';
-    })
   ];
 
   # Specify the SDDM theme configuration
