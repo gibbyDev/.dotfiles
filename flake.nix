@@ -25,7 +25,10 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/desktop/configuration.nix ];
+          modules = [
+             ./hosts/desktop/configuration.nix
+             ./hosts/laptop/configuration.nix  
+          ];
         };
       };
 
@@ -34,7 +37,10 @@
         cody = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit src; }; # Pass `src` to `home.nix`
-          modules = [ ./hosts/desktop/home.nix ];
+          modules = [ 
+            ./hosts/laptop/home.nix
+            ./hosts/desktop/home.nix
+          ];
         };
       };
     };

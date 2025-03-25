@@ -10,6 +10,6 @@
     ./waybar
     ./yazi
     ./nvim
-    ./code
+#    ./code
   ];
 }

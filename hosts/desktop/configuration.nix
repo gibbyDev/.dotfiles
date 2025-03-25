@@ -3,8 +3,11 @@
 {
   imports = [ ./hardware-configuration.nix ];  # Include hardware scan results.
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda";
+    useOSProber = true;
+  };
 
   # System Settings
   networking = {
@@ -113,6 +116,20 @@
     bridge-utils  # For networking support
     dnsmasq       # DHCP for VM networking
     ebtables      # NAT support for VMs
+    (pkgs.stdenv.mkDerivation {
+      pname = "sugar-candy-sddm-theme";
+      version = "latest";
+      src = pkgs.fetchFromGithub {
+        owner = "MarianArlt";
+        repo = "sddm-sugar-dark";
+        rev = "master";
+        sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
+      };
+      installPhase = ''
+        mkdir -p $out/share/sddm/themes/sddm-sugar-dark
+        cp -r * $out/share/sddm/themes/sddm-sugar-dark
+      '';
+    })
 
   ];
 

@@ -1,26 +1,37 @@
-# code.nix
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
+let
+  vscode-version = "1.88.1"; # Change this to your desired version
+  my-vscode = pkgs.vscode.overrideAttrs (oldAttrs: {
+    version = vscode-version;
+    src = pkgs.fetchurl {
+      url = "https://update.code.visualstudio.com/${vscode-version}/linux-x64/stable";
+      sha256 = "sha256-14m9w7wkg1704apd4d46yi6zwdlbrx2rp3fry9ffk2nn6kkahwk2"; # Replace with the correct hash
+    };
+  });
+in
 {
-  # Optional: Enable the VSCode extensions (if you need a specific extension set)
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      ms-python.python
-      ms-vscode.cpptools
-      esbenp.prettier-vscode
-      github.copilot
-      # Add more extensions as you need
-    ];
-  };
+    package = my-vscode;  # Use overridden VS Code package
 
-  # Optional: Configure the VSCode settings (this can also be done in the settings UI)
-  # Example: to change the color theme or editor settings:
-#  environment.etc."vscode/settings.json".text = ''
-#    {
-#      "editor.fontSize": 14,
- #     "workbench.colorTheme": "Visual Studio Dark"
-#    }
-#  '';
+    extensions = with pkgs.vscode-extensions; [
+      esbenp.prettier-vscode
+      vscodevim.vim
+      github.copilot
+      ms-azuretools.vscode-docker
+    ];
+
+    userSettings = {
+      "editor.formatOnSave" = true;
+      "editor.fontFamily" = "Fira Code";
+      "editor.fontLigatures" = true;
+      "editor.tabSize" = 4;
+      "files.autoSave" = "afterDelay";
+      "workbench.colorTheme" = "Pywal";
+      "editor.minimap.enabled" = false;
+      "vim.useSystemClipboard" = true;
+    };
+  };
 }
 

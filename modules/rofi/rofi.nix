@@ -56,7 +56,7 @@
         orientation:                 horizontal;
         children:                    [ "mode-switcher" , "inputbar" ];
         background-color:            transparent;
-        background-image:            url("~/.config/rofi/current_wallpaper.png", height);
+        background-image:            url("~/.config/rofi/current_wallpaper.jpeg", height);
     }
 
 

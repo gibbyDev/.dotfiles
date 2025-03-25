@@ -42,8 +42,8 @@
       master.new_status = "master";
 
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 3;
+        gaps_out = 8;
         border_size = 0;
         "col.active_border" = "rgba(ff00ffee)";
         "col.inactive_border" = "rgba(888888aa)";

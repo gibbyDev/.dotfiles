@@ -3,11 +3,11 @@
   programs.waybar.settings.mainBar = {
     position= "top";
     layer= "top";
-    height= 35;
-    margin-top= 10;
+    height= 30;
+    margin-top= 6;
     margin-bottom= 0;
-    margin-left= 10;
-    margin-right= 10;
+    margin-left= 6;
+    margin-right= 6;
 
     modules-left= [
         "custom/icon" 

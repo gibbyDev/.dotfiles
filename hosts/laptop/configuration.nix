@@ -4,7 +4,7 @@
   imports = [ ./hardware-configuration.nix ];  # Include hardware scan results.
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+#  boot.loader.efi.canTouchEfiVariables = true;
 
   # System Settings
   networking = {
@@ -55,6 +55,8 @@
 
   };
 
+  virtualisation.docker.enable = true;
+
   # Hyprland Window Manager
   programs.hyprland.enable = true;
 
@@ -87,9 +89,10 @@
   # System Packages
   environment.systemPackages = with pkgs; [
     vim
-    vscode
+    vscode-oss
     wget
     git
+    docker
     gnumake42
     go
     cmake
@@ -113,7 +116,6 @@
     bridge-utils  # For networking support
     dnsmasq       # DHCP for VM networking
     ebtables      # NAT support for VMs
-
   ];
 
   # Specify the SDDM theme configuration

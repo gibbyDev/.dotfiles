@@ -113,7 +113,7 @@ in
     }
 
     #battery {
-        color: #000000;
+        color: @color8;
         margin: 0px 10px 0px 0px;
     }
 
