@@ -89,7 +89,6 @@
   # System Packages
   environment.systemPackages = with pkgs; [
     vim
-    vscode-oss
     wget
     git
     docker

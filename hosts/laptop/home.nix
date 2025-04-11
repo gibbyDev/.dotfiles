@@ -20,6 +20,7 @@
     fastfetch
     tree
     git
+    vscode
     nodejs_20
     swww
     pywal

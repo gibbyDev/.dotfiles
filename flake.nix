@@ -26,7 +26,7 @@
         nixos = lib.nixosSystem {
           inherit system;
           modules = [
-             ./hosts/desktop/configuration.nix
+             #./hosts/desktop/configuration.nix
              ./hosts/laptop/configuration.nix  
           ];
         };
@@ -39,7 +39,7 @@
           extraSpecialArgs = { inherit src; }; # Pass `src` to `home.nix`
           modules = [ 
             ./hosts/laptop/home.nix
-            ./hosts/desktop/home.nix
+            #./hosts/desktop/home.nix
           ];
         };
       };

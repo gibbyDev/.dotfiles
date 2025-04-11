@@ -6,7 +6,7 @@ let
     version = vscode-version;
     src = pkgs.fetchurl {
       url = "https://update.code.visualstudio.com/${vscode-version}/linux-x64/stable";
-      sha256 = "sha256-14m9w7wkg1704apd4d46yi6zwdlbrx2rp3fry9ffk2nn6kkahwk2"; # Replace with the correct hash
+      sha256 = "sha256-YnKo5jTWiulc8tmNm0XPizb+TfSGNNKuIuCEN/nhqZI=";
     };
   });
 in
