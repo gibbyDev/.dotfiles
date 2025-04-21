@@ -20,11 +20,12 @@
     fastfetch
     tree
     git
-    vscode
+#    vscode
     nodejs_20
     swww
     pywal
     bat
+    nwg-displays
   ];
 
   nixpkgs.config.allowUnfree = true;

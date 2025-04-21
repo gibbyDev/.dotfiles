@@ -6,10 +6,10 @@
     ./rofi
     ./tmux
     ./misc
-    ./dolphin
+#    ./dolphin
     ./waybar
     ./yazi
     ./nvim
-#    ./code
+    ./code
   ];
 }
