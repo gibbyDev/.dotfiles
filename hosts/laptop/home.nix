@@ -20,12 +20,27 @@
     fastfetch
     tree
     git
+    chromium
 #    vscode
     nodejs_20
+    zig_0_12
     swww
+    tailwindcss
+    templ
+    protobuf
+    air
     pywal
     bat
     nwg-displays
+
+    (pkgs.writeShellScriptBin "protoc-gen-go" ''
+      export PATH=$HOME/.go/bin:$PATH
+      go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+    '')
+    (pkgs.writeShellScriptBin "protoc-gen-go-grpc" ''
+      export PATH=$HOME/.go/bin:$PATH
+      go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+    '')
   ];
 
   nixpkgs.config.allowUnfree = true;

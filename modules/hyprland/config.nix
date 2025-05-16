@@ -53,8 +53,8 @@
         rounding = 10;
 
         blur = {
-          enabled = false;
-          size = 8;
+          enabled = true;
+          size = 6;
           passes = 2;
         };
       };
@@ -78,6 +78,18 @@
       };
 
       xwayland.force_zero_scaling = true;
+
+      bindm = [
+          "SUPER, mouse_down, workspace, e+1"
+          "SUPER, mouse_up, workspace, e-1"
+
+            # Move/Resize focused window
+          "SUPER, mouse:272, movewindow"
+          "SUPER, Z, movewindow"
+          "SUPER, X, resizewindow"
+
+
+      ]
 
       bind = [
 # Window/Session actions
@@ -147,14 +159,10 @@
           "SUPER+Shift, Up, resizeactive, 0 -30"
           "SUPER+Shift, Down, resizeactive, 0 30"
 
-# Scroll through existing workspaces
-          "SUPER, mouse_down, workspace, e+1"
-          "SUPER, mouse_up, workspace, e-1"
-
-            # Move/Resize focused window
-            #"SUPER, mouse:272, movewindow"
-            #"SUPER, Z, movewindow"
-            #"SUPER, X, resizewindow"
+          "SUPER+SHIFT+CTRL, left, exec, $HOME/.local/share/bin/move-floating.sh l -30"
+          "SUPER+SHIFT+CTRL, right, exec, $HOME/.local/share/bin/move-floating.sh r 30"
+          "SUPER+SHIFT+CTRL, up, exec, $HOME/.local/share/bin/move-floating.sh u -30"
+          "SUPER+SHIFT+CTRL, down, exec, $HOME/.local/share/bin/move-floating.sh d 30"
 
             # Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
             #"$moveactivewindow=grep -q 'true' <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive"
