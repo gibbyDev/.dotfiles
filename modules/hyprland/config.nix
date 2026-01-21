@@ -189,17 +189,6 @@
       ];
 
       windowrulev2 = [
-        "opacity 0.90 0.80,class:^(firefox)$"
-        "opacity 0.90 0.90,class:^(Google-chrome)$"
-        "opacity 0.90 0.90,class:^(Brave-browser)$"
-        "opacity 0.80 0.80,class:^(code-oss)$"
-        "opacity 0.80 0.80,class:^([Cc]ode)$"
-        "opacity 0.80 0.80,class:^(code-url-handler)$"
-        "opacity 0.80 0.80,class:^(code-insiders-url-handler)$"
-        "opacity 0.86 0.80,class:^(kitty)$"
-        "opacity 0.86 0.80,class:^(yazi)$"
-        "opacity 0.80 0.80,class:^(org.kde.dolphin)$"
-        "opacity 0.80 0.80,class:^(org.kde.ark)$"
       ];
     };
   };
