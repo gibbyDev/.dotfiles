@@ -59,6 +59,11 @@
     cp -r ${../../wallpapers}/* ~/Pictures/wallpapers/
   '';
 
+  home.file.".p10k.zsh" = {
+    source = ../../.p10k.zsh;
+  };
+
+
   programs.home-manager.enable = true;
 }
 

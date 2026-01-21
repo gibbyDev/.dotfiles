@@ -5,8 +5,6 @@
       monitor = [ ",preferred,auto,auto" ];
 
       exec-once = [
-        "waybar &"
-        "spotify &"
         "${pkgs.swww}/bin/swww-daemon &"
         "networkmanagerapplet --indicator &"
         "$HOME/.local/share/bin/set-wallpaper.sh &"
@@ -45,15 +43,15 @@
       master.new_status = "master";
 
       general = {
-        gaps_in = 3;
-        gaps_out = 8;
+        gaps_in = 2;
+        gaps_out = 4;
         border_size = 0;
         "col.active_border" = "rgba(ff00ffee)";
         "col.inactive_border" = "rgba(888888aa)";
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 2;
         blur = {
           enabled = true;
           size = 6;
@@ -62,7 +60,7 @@
       };
 
       animations = {
-        enabled = true;
+        enabled = false;
         bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
         animation = [
           "windows, 1, 3, myBezier"
@@ -80,15 +78,15 @@
       };
 
       xwayland.force_zero_scaling = true;
-
-      bindm = [
-        "SUPER, mouse_down, exec, \"$HOME/.local/share/bin/switch-workspace.sh down\""
-        "SUPER, mouse_up, exec, \"$HOME/.local/share/bin/switch-workspace.sh up\""
-        "SUPER, mouse:272, movewindow"
-        "SUPER, Z, movewindow"
-        "SUPER, X, resizewindow"
-      ];
-
+      #
+      # bindm = [
+      #   "SUPER, mouse_down, exec, \"$HOME/.local/share/bin/switch-workspace.sh down\""
+      #   "SUPER, mouse_up, exec, \"$HOME/.local/share/bin/switch-workspace.sh up\""
+      #   "SUPER, mouse:272, movewindow"
+      #   "SUPER, Z, movewindow"
+      #   "SUPER, X, resizewindow"
+      # ];
+      #
       bind = [
         "SUPER, Q, exec, $HOME/.local/share/bin/dontkillsteam.sh"
         "ALT, F4, exec, $HOME/.local/share/bin/dontkillsteam.sh"
