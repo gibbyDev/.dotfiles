@@ -1,6 +1,6 @@
 {
   imports = [
-    ./discord.nix
+#    ./discord.nix
     ./git.nix
     ./gtk.nix
     ./btop.nix

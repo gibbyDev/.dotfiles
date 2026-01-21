@@ -27,7 +27,8 @@
           inherit system;
           modules = [
              #./hosts/desktop/configuration.nix
-             ./hosts/laptop/configuration.nix  
+             # ./hosts/laptop/configuration.nix
+             ./hosts/yoga/configuration.nix  
           ];
         };
       };
@@ -38,8 +39,9 @@
           inherit pkgs;
           extraSpecialArgs = { inherit src; }; # Pass `src` to `home.nix`
           modules = [ 
-            ./hosts/laptop/home.nix
+            # ./hosts/laptop/home.nix
             #./hosts/desktop/home.nix
+            ./hosts/yoga/home.nix
           ];
         };
       };

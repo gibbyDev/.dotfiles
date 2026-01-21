@@ -7,7 +7,7 @@
     ./tmux
     ./misc
 #    ./dolphin
-    ./waybar
+#    ./waybar
     ./yazi
     ./nvim
     ./code
