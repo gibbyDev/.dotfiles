@@ -29,12 +29,16 @@
     };
   };
 
+  programs.zsh.enable = true;
+
+
   # User Configuration
   users.users.cody = {
     isNormalUser = true;
     description = "cody";
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "qemu" "docker" ];
     packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
   # Display & Audio Configuration
@@ -118,11 +122,11 @@
   ];
 
   # Specify the SDDM theme configuration
-#  environment.etc."sddm.conf".text = lib.mkForce ''
-#    [Theme]
-#    Current=sugar-candy
-#  '';
-
+ # environment.etc."sddm.conf".text = lib.mkForce ''
+ #   [Theme]
+ #   Current=sugar-candy
+ # '';
+ #
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -16,12 +16,13 @@
       enable_audio_bell = false;
       mouse_hide_wait = 60;
 
-      ## Tabs
       tab_title_template = "{index}";
       active_tab_font_style = "normal";
       inactive_tab_font_style = "normal";
+
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
+
       active_tab_foreground = "#1e1e2e";
       active_tab_background = "#cba6f7";
       inactive_tab_foreground = "#bac2de";
@@ -42,11 +43,7 @@
       export QT_QPA_PLATFORMTHEME=qt5ct
       export QT_STYLE_OVERRIDE=kvantum
 
-      
-      # Use zsh as the shell
-      shell zsh
-
-      # Load Pywal colors if they exist
+      # Load pywal colors if they exist
       include ~/.cache/wal/colors-kitty.conf
     '';
   };

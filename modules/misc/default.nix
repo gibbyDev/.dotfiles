@@ -8,7 +8,7 @@
     ./wlogout.nix
     ./pywal.nix
     ./obsidian.nix
-    #./sddm.nix
+    # ./sddm.nix
     #./spotify.nix
     ./zsh.nix
   ];

@@ -1,46 +1,41 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+
     syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;
 
     initExtra = ''
-      # Powerlevel10k Theme
+      # Powerlevel10k
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-      # zsh-autosuggestions
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-      # Ensure fpath includes syntax-highlighting
-      fpath=(${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting $fpath)
-
-      # zsh-syntax-highlighting (must be last)
-      if [[ -f ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      else
-        echo "zsh-syntax-highlighting not found!"
-      fi
     '';
 
-
     shellAliases = {
-      ll = "ls -la";
-      hmr = "home-manager switch --flake .";
-      reload = "exec zsh";
+      # Defaults – hosts may override
+      ll = lib.mkDefault "ls -la";
+      hmr = lib.mkDefault "home-manager switch --flake .";
+      reload = lib.mkDefault "exec zsh";
     };
   };
 
-  # Fonts for Powerlevel10k icons and general nerd fonts
+  ################################
+  # Fonts (for p10k icons)
+  ################################
   fonts.fontconfig.enable = true;
 
+  ################################
+  # Packages
+  ################################
   home.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.hack
     nerd-fonts.jetbrains-mono
 
+    zsh-powerlevel10k
     zsh-autosuggestions
     zsh-syntax-highlighting
   ];

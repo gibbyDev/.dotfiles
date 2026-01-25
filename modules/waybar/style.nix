@@ -19,7 +19,7 @@ in
     }
 
     window#waybar {
-        background-color: rgba(0, 0, 0, 0);
+        background-color: @color0;
     }
 
     .modules-left {

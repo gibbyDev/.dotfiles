@@ -107,6 +107,8 @@
         "SUPER, Tab, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh w"
         "SUPER+SHIFT, E, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh f"
 
+        "SUPER, B, exec, $HOME/.local/share/bin/waybar-toggle.sh"
+
         ", F10, exec, $HOME/.local/share/bin/volumecontrol.sh -o m"
         ", F11, exec, $HOME/.local/share/bin/volumecontrol.sh -o d"
         ", F12, exec, $HOME/.local/share/bin/volumecontrol.sh -o i"

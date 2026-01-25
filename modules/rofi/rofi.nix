@@ -6,163 +6,116 @@
     package = pkgs.rofi;
 
     theme = "user";
-
   };
 
   xdg.configFile."rofi/user.rasi".text = ''
     // Config //
     configuration {
-        modi:                        "drun,filebrowser,window,run";
-        show-icons:                  true;
-        display-drun:                " ";
-        display-run:                 " ";
-        display-filebrowser:         " ";
-        display-window:              " ";
-        drun-display-format:         "{name}";
-        window-format:               "{w}{t}";
-        font:                        "JetBrainsMono Nerd Font 10";
-        icon-theme:                  "Tela-circle-dracula";
+        modi:         "drun,run,window";
+        show-icons:   true;
+        font:         "JetBrainsMono Nerd Font 12"; // slightly bigger
+        icon-theme:   "Tela-circle-dracula";
     }
 
     @theme "~/.config/rofi/colors.rasi"
 
-
-    // Main //
+    // Main window //
     window {
-        height:                      33em;
-        width:                       63em;
-        transparency:                "real";
-        fullscreen:                  false;
-        enabled:                     true;
-        cursor:                      "default";
-        spacing:                     0em;
-        padding:                     0em;
-        border-color:                @background;
-        background-color:            @background;
+        width:        35em;
+        height:       18em;
+        transparency: "real";
+        fullscreen:   false;
+        cursor:       "default";
+        border-color: @foreground;
+        border-width: 2px;
+        background-color: @foreground;
+        padding: 0.25em;
     }
+
+    // Mainbox (vertical stack: input on top, list below)
     mainbox {
-        enabled:                     true;
-        spacing:                     0em;
-        padding:                     0em;
-        orientation:                 horizontal;
-        children:                    [ "dummywall" , "listbox" ];
-        background-color:            transparent;
-    }
-    dummywall {
-        spacing:                     0em;
-        padding:                     0em;
-        width:                       37em;
-        expand:                      false;
-        orientation:                 horizontal;
-        children:                    [ "mode-switcher" , "inputbar" ];
-        background-color:            transparent;
-        background-image:            url("~/.config/rofi/current_wallpaper.jpeg", height);
+        orientation: vertical;
+        spacing:     0.5em;
+        padding:     0.25em;
+        background-color: @background;
     }
 
-
-    // Modes //
-    mode-switcher{
-        orientation:                 vertical;
-        enabled:                     true;
-        width:                       3.8em;
-        padding:                     9.2em 0.5em 9.2em 0.5em;
-        spacing:                     1.2em;
-        background-color:            transparent;
-        background-image:            url("~/.cache/hyde/wall.blur", height);
-    }
-    button {
-        cursor:                      pointer;
-        border-radius:               2em;
-        background-color:            @background;
-        text-color:                  @foreground;
-    }
-    button selected {
-        background-color:            @background;
-        text-color:                  @foreground;
-    }
-
-
-    // Inputs //
+    // Input bar at top with border
     inputbar {
-        enabled:                     true;
-        children:                    [ "entry" ];
-        background-color:            transparent;
+        enabled: true;
+        children: [ "entry" ];
+        background-color: @background;
+        border-color: @foreground;
+        border-width: 2px;
+        padding: 0.4em 0.5em;
     }
+
     entry {
-        enabled:                     false;
+        enabled: true;
+        text-color: @foreground;
+        background-color: @background;
+        padding: 0.2em 0.4em;
     }
 
-
-    // Lists //
+    // List view //
     listbox {
-        spacing:                     0em;
-        padding:                     2em;
-        children:                    [ "dummy" , "listview" , "dummy" ];
-        background-color:            transparent;
+        spacing: 0.5em;
+        padding: 0.5em;
+        background-color: transparent;
     }
+
     listview {
-        enabled:                     true;
-        spacing:                     0em;
-        padding:                     0em;
-        columns:                     1;
-        lines:                       8;
-        cycle:                       true;
-        dynamic:                     true;
-        scrollbar:                   false;
-        layout:                      vertical;
-        reverse:                     false;
-        expand:                      false;
-        fixed-height:                true;
-        fixed-columns:               true;
-        cursor:                      "default";
-        background-color:            transparent;
-        text-color:                  @foreground;
-    }
-    dummy {
-        background-color:            transparent;
+        enabled: true;
+        columns: 1;
+        lines:   6;
+        cycle:   true;
+        dynamic: true;
+        scrollbar: false;
+        layout: vertical;
+        background-color: transparent;
+        text-color: @foreground;
     }
 
-
-    // Elements //
+    // Elements (programs) //
     element {
-        enabled:                     true;
-        spacing:                     0.8em;
-        padding:                     0.4em 0.4em 0.4em 1.5em;
-        cursor:                      pointer;
-        background-color:            transparent;
-        text-color:                  @foreground;
-    }
-    element selected.normal {
-        background-color:            @foreground;
-        text-color:                  @background;
-    }
-    element-icon {
-        size:                        2.8em;
-        cursor:                      inherit;
-        background-color:            transparent;
-        text-color:                  inherit;
-    }
-    element-text {
-        vertical-align:              0.5;
-        horizontal-align:            0.0;
-        cursor:                      inherit;
-        background-color:            transparent;
-        text-color:                  inherit;
+        enabled: true;
+        spacing: 0.5em;
+        padding: 0.3em 0.5em;
+        cursor: pointer;
+        background-color: transparent;
+        text-color: @foreground;
     }
 
-    // Error message //
+    // Highlight both selection and mouse hover
+    element selected.normal,
+    element selected.active,
+    element selected.focused,
+    element hovered {
+        background-color: @foreground;
+        text-color: @background;
+    }
+
+    element-icon {
+        size: 2em;
+        background-color: transparent;
+        text-color: inherit;
+    }
+
+    element-text {
+        cursor: inherit;
+        background-color: transparent;
+        text-color: inherit;
+    }
+
+    // Error messages //
     error-message {
-        text-color:                  @foreground;
-        background-color:            @background;
-        text-transform:              capitalize;
-        children:                    [ "textbox" ];
+        text-color: @foreground;
+        background-color: @background;
     }
 
     textbox {
-        text-color:                  inherit;
-        background-color:            inherit;
-        vertical-align:              0.5;
-        horizontal-align:            0.5;
+        text-color: inherit;
+        background-color: inherit;
     }
   '';
 }
