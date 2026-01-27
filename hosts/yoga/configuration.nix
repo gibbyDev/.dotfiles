@@ -108,6 +108,7 @@
     davinci-resolve
     vlc
     adb-sync
+    wl-clipboard
     libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support

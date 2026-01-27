@@ -51,11 +51,11 @@ set_wallpaper() {
     copy_current_wallpaper "$wallpaper"
 
     # Restart Waybar
-    if pgrep waybar > /dev/null; then
-        pkill waybar
-    fi
-    waybar &
-
+    # if pgrep waybar > /dev/null; then
+    #     pkill waybar
+    # fi
+    # waybar &
+    #
     if pgrep nvim > /dev/null; then
         nvim --server /tmp/nvim.pipe --remote-send '<Esc>:source $HOME/.cache/wal/colors-wal.vim<CR>'
     fi

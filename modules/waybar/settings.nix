@@ -36,7 +36,7 @@
 
     "hyprland/window" = {
         format = "<b>{}</b>";
-        # exec = "hyprctl activewindow | grep class | awk '{print $2}'";
+        exec = "hyprctl activewindow | grep class | awk '{print $2}'";
         separate-outputs = true;
         max-length = 35;
     };
@@ -51,23 +51,43 @@
         format-alt= " {:%d/%m}";
     };
 
-    "hyprland/workspaces"= {
-        format = "{icon}";
-        format-icons= {
-            "1"= " ";
-            "2"= " ";
-            "3"= " ";
-            "4"= " ";
-            "5"= " ";
-            "6"= " ";
-            urgent= "";
-            default = "";
-            sort-by-number= true;
-        };
-        on-scroll-up = "hyprctl dispatch workspace e-1";
-        on-scroll-down = "hyprctl dispatch workspace e+1";
-        on-click = "activate";
-    };
+    "hyprland/workspaces" = {
+  format = "{icon}";
+
+  format-icons = {
+    active = "";   # filled circle
+    default = "";  # empty circle
+  };
+
+  persistent-workspaces = {
+    "*" = 2;        # always show exactly 3 workspaces
+  };
+
+  sort-by-number = true;
+
+  on-scroll-up = "hyprctl dispatch workspace e-1";
+  on-scroll-down = "hyprctl dispatch workspace e+1";
+  on-click = "activate";
+};
+
+    #
+    # "hyprland/workspaces"= {
+    #     format = "{icon}";
+    #     format-icons= {
+    #         # "1"= " ";
+    #         # "2"= " ";
+    #         # "3"= " ";
+    #         # "4"= " ";
+    #         # "5"= " ";
+    #         # "6"= " ";
+    #         active= "";
+    #         default = "";
+    #         sort-by-number= true;
+    #     };
+    #     on-scroll-up = "hyprctl dispatch workspace e-1";
+    #     on-scroll-down = "hyprctl dispatch workspace e+1";
+    #     on-click = "activate";
+    # };
 
     memory= {
         format= " {}%";

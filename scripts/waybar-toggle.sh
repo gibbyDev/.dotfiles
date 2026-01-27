@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
-if pgrep -x waybar >/dev/null; then
-    pkill waybar
+#!/usr/bin/env sh
+
+if pgrep -f waybar >/dev/null; then
+    pkill -f waybar
 else
-    waybar >/dev/null 2>&1 &
+    waybar &
 fi
 

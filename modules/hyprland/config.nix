@@ -107,7 +107,7 @@
         "SUPER, Tab, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh w"
         "SUPER+SHIFT, E, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh f"
 
-        "SUPER, B, exec, $HOME/.local/share/bin/waybar-toggle.sh"
+        "bind = SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
 
         ", F10, exec, $HOME/.local/share/bin/volumecontrol.sh -o m"
         ", F11, exec, $HOME/.local/share/bin/volumecontrol.sh -o d"

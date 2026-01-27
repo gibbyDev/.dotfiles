@@ -36,6 +36,7 @@
     pywal
     bat
     w3m
+    jq
     nwg-displays
 
     (writeShellScriptBin "protoc-gen-go" ''
