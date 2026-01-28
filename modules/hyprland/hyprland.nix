@@ -15,4 +15,8 @@
     # enableNvidiaPatches = false;
     systemd.enable = true;
   };
+  wayland.windowManager.hyprland.extraConfig = ''
+  source = ~/.config/hypr/monitors.conf
+'';
+
 }

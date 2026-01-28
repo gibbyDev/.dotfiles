@@ -8,14 +8,18 @@
         "${pkgs.swww}/bin/swww-daemon &"
         "networkmanagerapplet --indicator &"
         "$HOME/.local/share/bin/set-wallpaper.sh &"
-      ];
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
+     ];
 
       env = [
         "PATH,$PATH:$HOME/.local/share/bin"
       ];
 
       input = {
-        kb_layout = "us";
+        kb_layout = "us,us";
+        kb_variant = ",dvorak";
+        kb_options = "grp:alt_shift_toggle";
         follow_mouse = 1;
         sensitivity = 0;
         force_no_accel = 1;
@@ -78,15 +82,15 @@
       };
 
       xwayland.force_zero_scaling = true;
-      #
-      # bindm = [
-      #   "SUPER, mouse_down, exec, \"$HOME/.local/share/bin/switch-workspace.sh down\""
-      #   "SUPER, mouse_up, exec, \"$HOME/.local/share/bin/switch-workspace.sh up\""
-      #   "SUPER, mouse:272, movewindow"
-      #   "SUPER, Z, movewindow"
-      #   "SUPER, X, resizewindow"
-      # ];
-      #
+
+      bindm = [
+        # "SUPER, mouse_down, exec, \"$HOME/.local/share/bin/switch-workspace.sh down\""
+        # "SUPER, mouse_up, exec, \"$HOME/.local/share/bin/switch-workspace.sh up\""
+        # "SUPER, mouse:272, movewindow"
+        # "SUPER, Z, movewindow"
+        # "SUPER, X, resizewindow"
+      ];
+
       bind = [
         "SUPER, Q, exec, $HOME/.local/share/bin/dontkillsteam.sh"
         "ALT, F4, exec, $HOME/.local/share/bin/dontkillsteam.sh"
@@ -106,6 +110,8 @@
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
         "SUPER, Tab, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh w"
         "SUPER+SHIFT, E, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh f"
+
+        "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode |wl-copy"
 
         "bind = SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
 
@@ -191,6 +197,7 @@
       ];
 
       windowrulev2 = [
+        "opacity 0.85 0.75, class:^(firefox)$"
       ];
     };
   };

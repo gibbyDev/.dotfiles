@@ -45,9 +45,13 @@
   services = {
     xserver = {
       enable = true;
-      xkb.layout = "us";
+#      xkb.layout = "dvorak";
     };
-
+xserver.xkb = {
+  layout = "us,us";
+  variant = ",dvorak";
+  options = "grp:alt_shift_toggle";
+};
     # PipeWire audio setup
     pipewire = {
       enable = true;
@@ -107,8 +111,10 @@
     android-tools
     davinci-resolve
     vlc
+    xcolor
     adb-sync
     wl-clipboard
+    cliphist
     libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback  # Kernel module for virtual webcam
     alsa-utils  # Audio support
@@ -120,6 +126,13 @@
     bridge-utils  # For networking support
     dnsmasq       # DHCP for VM networking
     ebtables      # NAT support for VMs
+    grim 
+    slurp 
+    grimblast 
+    swappy 
+    libnotify 
+    coreutils 
+    hyprshade
   ];
 
   # Specify the SDDM theme configuration

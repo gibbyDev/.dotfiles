@@ -8,6 +8,7 @@
     ./misc
 #    ./dolphin
     ./waybar
+    ./wlogout
     ./yazi
     ./nvim
     ./code

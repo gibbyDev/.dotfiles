@@ -4,10 +4,10 @@
     position= "top";
     layer= "top";
     height= 30;
-    margin-top= 6;
+    margin-top= 4;
     margin-bottom= 0;
-    margin-left= 6;
-    margin-right= 6;
+    margin-left= 4;
+    margin-right= 4;
 
     modules-left= [
         "custom/icon" 

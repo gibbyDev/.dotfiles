@@ -16,7 +16,11 @@
 
     shellAliases = {
       # Defaults – hosts may override
-      ll = lib.mkDefault "ls -la";
+      ll = lib.mkDefault "ls -lah";
+      ".." = lib.mkDefault "cd ../";
+       c = lib.mkDefault "clear";
+      ff = lib.mkDefault "fastfetch";
+      gs = lib.mkDefault "git status";
       hmr = lib.mkDefault "home-manager switch --flake .";
       reload = lib.mkDefault "exec zsh";
     };
