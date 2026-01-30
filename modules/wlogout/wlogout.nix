@@ -1,65 +1,101 @@
-{ config, pkgs, ... }:
-
-let
-  # Catppuccin Mocha colors (hard-coded)
-  color_bg       = "#1E1E2E";
-  color_fg       = "#D9E0EE";
-  color_button   = "#313244";
-  color_button_hover = "#F5C2E7";
-  color_border   = "#585B70";
-in
-{
+{ config, ... }: {
   programs.wlogout = {
     enable = true;
-
     layout = [
-      { label = "shutdown"; action = "sleep 1; systemctl poweroff"; text = "Shutdown"; keybind = "s"; }
-      { label = "reboot"; action = "sleep 1; systemctl reboot"; text = "Reboot"; keybind = "r"; }
-      { label = "logout"; action = "sleep 1; hyprctl dispatch exit"; text = "Exit"; keybind = "e"; }
-      { label = "suspend"; action = "sleep 1; systemctl suspend"; text = "Suspend"; keybind = "u"; }
-      { label = "lock"; action = "sleep 1; hyprlock"; text = "Lock"; keybind = "l"; }
-      { label = "hibernate"; action = "sleep 1; systemctl hibernate"; text = "Hibernate"; keybind = "h"; }
+      {
+        label = "shutdown";
+        action = "sleep 1; systemctl poweroff";
+        text = "Shutdown";
+        keybind = "s";
+      }
+      {
+        label = "reboot";
+        action = "sleep 1; systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
+      }
+      {
+        label = "logout";
+        action = "sleep 1; hyprctl dispatch exit";
+        text = "Exit";
+        keybind = "e";
+      }
+      {
+        label = "suspend";
+        action = "sleep 1; systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
+      }
+      {
+        label = "lock";
+        action = "sleep 1; hyprlock";
+        text = "Lock";
+        keybind = "l";
+      }
+      {
+        label = "hibernate";
+        action = "sleep 1; systemctl hibernate";
+        text = "Hibernate";
+        keybind = "h";
+      }
     ];
-
     style = ''
       * {
         font-family: "JetBrainsMono NF", FontAwesome, sans-serif;
-        transition: 0.2s;
+        background-image: none;
+        transition: 20ms;
       }
-
       window {
-        background-color: ${color_bg}CC; /* semi-transparent */
+        background-color: rgba(30, 30, 46, 0.8); /* base00 */
       }
-
       button {
-        background-color: ${color_button};
-        color: ${color_fg};
+        color: #D9E0EE; /* base05 */
         font-size: 20px;
-        border-radius: 15px;
-        border: 3px solid ${color_border};
-        padding: 10px;
-        margin: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 25%;
+        background-size: 15%;
+        border-style: solid;
+        background-color: rgba(30, 30, 46, 0.3); /* base00 */
+        border: 3px solid #D9E0EE; /* base05 */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
-
-      button:hover,
       button:focus,
-      button:active {
-        color: ${color_button_hover};
-        background-color: ${color_button_hover}33; /* light hover */
-        border: 3px solid ${color_button_hover};
-        transform: scale(1.1);
+      button:active,
+      button:hover {
+        color: #ABE9B3; /* base0B */
+        background-color: rgba(30, 30, 46, 0.5); /* base00 */
+        border: 3px solid #ABE9B3; /* base0B */
       }
-
-      #shutdown { background-image: url("icons/shutdown.png"); }
-      #reboot { background-image: url("icons/reboot.png"); }
-      #logout { background-image: url("icons/logout.png"); }
-      #suspend { background-image: url("icons/suspend.png"); }
-      #lock { background-image: url("icons/lock.png"); }
-      #hibernate { background-image: url("icons/hibernate.png"); }
+      #logout {
+        margin: 10px;
+        border-radius: 20px;
+        background-image: image(url("icons/logout.png"));
+      }
+      #suspend {
+        margin: 10px;
+        border-radius: 20px;
+        background-image: image(url("icons/suspend.png"));
+      }
+      #shutdown {
+        margin: 10px;
+        border-radius: 20px;
+        background-image: image(url("icons/shutdown.png"));
+      }
+      #reboot {
+        margin: 10px;
+        border-radius: 20px;
+        background-image: image(url("icons/reboot.png"));
+      }
+      #lock {
+        margin: 10px;
+        border-radius: 20px;
+        background-image: image(url("icons/lock.png"));
+      }
+      #hibernate {
+        margin: 10px;
+        border-radius: 20px;
+        background-image: image(url("icons/hibernate.png"));
+      }
     '';
   };
 

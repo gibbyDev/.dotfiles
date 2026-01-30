@@ -1,11 +1,10 @@
 { pkgs, ... }: {
   programs.git = {
     enable = true;
-    
-    userName = "gibbyDev";
-    userEmail = "gibbyDEV@protonmail.com";
-    
-    extraConfig = { 
+
+    settings = {
+      user.name = "gibbyDev";
+      user.email = "gibbyDEV@protonmail.com";
       init.defaultBranch = "main";
       credential.helper = "store";
     };
@@ -14,7 +13,9 @@
   home.packages = [
     pkgs.gh
     pkgs.git-lfs
-    pkgs.copilot-cli  # Add GitHub Copilot CLI
+    pkgs.copilot-cli
+    pkgs.noto-fonts
+    pkgs.noto-fonts-color-emoji  # renamed
   ];
 }
 

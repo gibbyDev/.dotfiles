@@ -1,4 +1,4 @@
-{ inputs, pkgs, ...}: 
+{ inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [
     swww
@@ -16,7 +16,8 @@
     systemd.enable = true;
   };
   wayland.windowManager.hyprland.extraConfig = ''
-  source = ~/.config/hypr/monitors.conf
-'';
+    source = ~/.config/hypr/monitors.conf
+    source = ~/.config/hypr/workspaces.conf
+  '';
 
 }

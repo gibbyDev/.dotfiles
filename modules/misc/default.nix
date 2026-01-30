@@ -7,6 +7,7 @@
     ./pipewire.nix
     ./pywal.nix
     ./obsidian.nix
+    ./dunst.nix
     # ./sddm.nix
     #./spotify.nix
     ./zsh.nix

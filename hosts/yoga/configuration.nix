@@ -1,15 +1,15 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];  # Include hardware scan results.
+  imports = [ ./hardware-configuration.nix ]; # Include hardware scan results.
 
   boot.loader.systemd-boot.enable = true;
-#  boot.loader.efi.canTouchEfiVariables = true;
+  #  boot.loader.efi.canTouchEfiVariables = true;
 
   # System Settings
   networking = {
     hostName = "nixos";
-    networkmanager.enable = true;  # Enable NetworkManager
+    networkmanager.enable = true; # Enable NetworkManager
   };
 
   time.timeZone = "America/Detroit";
@@ -37,7 +37,7 @@
     isNormalUser = true;
     description = "cody";
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "qemu" "docker" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
@@ -45,13 +45,13 @@
   services = {
     xserver = {
       enable = true;
-#      xkb.layout = "dvorak";
+      #      xkb.layout = "dvorak";
     };
-xserver.xkb = {
-  layout = "us,us";
-  variant = ",dvorak";
-  options = "grp:alt_shift_toggle";
-};
+    xserver.xkb = {
+      layout = "us,us";
+      variant = ",dvorak";
+      options = "grp:alt_shift_toggle";
+    };
     # PipeWire audio setup
     pipewire = {
       enable = true;
@@ -75,10 +75,10 @@ xserver.xkb = {
   };
 
   boot.kernelModules = [
-    "kvm" 
+    "kvm"
     "kvm-intel"
     "v4l2loopback"
-  ]; 
+  ];
 
   # Fonts Configuration
   fonts = {
@@ -116,31 +116,35 @@ xserver.xkb = {
     wl-clipboard
     cliphist
     libsForQt5.qt5.qtgraphicaleffects
-    linuxPackages.v4l2loopback  # Kernel module for virtual webcam
-    alsa-utils  # Audio support
-    v4l-utils   # Video4Linux tools
+    linuxPackages.v4l2loopback # Kernel module for virtual webcam
+    alsa-utils # Audio support
+    v4l-utils # Video4Linux tools
     pipewire
     qemu
     libvirt
     virt-manager
-    bridge-utils  # For networking support
-    dnsmasq       # DHCP for VM networking
-    ebtables      # NAT support for VMs
-    grim 
-    slurp 
-    grimblast 
-    swappy 
-    libnotify 
-    coreutils 
+    bridge-utils # For networking support
+    dnsmasq # DHCP for VM networking
+    ebtables # NAT support for VMs
+    grim
+    slurp
+    grimblast
+    swappy
+    dunst
+    jq
+    moreutils
+    hyprland
+    libnotify
+    coreutils
     hyprshade
   ];
 
   # Specify the SDDM theme configuration
- # environment.etc."sddm.conf".text = lib.mkForce ''
- #   [Theme]
- #   Current=sugar-candy
- # '';
- #
+  # environment.etc."sddm.conf".text = lib.mkForce ''
+  #   [Theme]
+  #   Current=sugar-candy
+  # '';
+  #
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

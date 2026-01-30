@@ -21,15 +21,15 @@
 
     // Main window //
     window {
-        width:        35em;
-        height:       18em;
+        width:        25em;
+        height:       14em;
         transparency: "real";
         fullscreen:   false;
         cursor:       "default";
         border-color: @foreground;
         border-width: 2px;
         background-color: @foreground;
-        padding: 0.25em;
+        padding: 0.15em;
     }
 
     // Mainbox (vertical stack: input on top, list below)
@@ -96,7 +96,7 @@
     }
 
     element-icon {
-        size: 2em;
+        size: 1.5em;
         background-color: transparent;
         text-color: inherit;
     }

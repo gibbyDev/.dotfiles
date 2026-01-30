@@ -29,11 +29,11 @@
         ## Vim
         "vim.useSystemClipboard" = true;
         ## Line numbers
-"editor.lineNumbers" = "relative";
+        "editor.lineNumbers" = "relative";
 
-## Vim polish
-"vim.smartRelativeLine" = true;   # absolute number on current line
-"vim.hlsearch" = true;             # highlight search matches
+        ## Vim polish
+        "vim.smartRelativeLine" = true; # absolute number on current line
+        "vim.hlsearch" = true; # highlight search matches
 
         ## UI
         "workbench.sideBar.location" = "right";

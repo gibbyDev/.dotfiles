@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     twemoji-color-font
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
   gtk = {

@@ -27,7 +27,7 @@
     git
     chromium
     nodejs_20
-    zig_0_12
+    # zig_0_12
     swww
     tailwindcss
     templ
@@ -36,9 +36,7 @@
     pywal
     bat
     w3m
-    jq
     nwg-displays
-
     (writeShellScriptBin "protoc-gen-go" ''
       export PATH=$HOME/.go/bin:$PATH
       go install google.golang.org/protobuf/cmd/protoc-gen-go@latest

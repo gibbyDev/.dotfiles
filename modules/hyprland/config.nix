@@ -10,12 +10,12 @@
         "$HOME/.local/share/bin/set-wallpaper.sh &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-     ];
+      ];
 
       env = [
         "PATH,$PATH:$HOME/.local/share/bin"
       ];
-
+     
       input = {
         kb_layout = "us,us";
         kb_variant = ",dvorak";
@@ -33,11 +33,6 @@
           sensitivity = -0.5;
         }
       ];
-
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 3;
-      };
 
       dwindle = {
         pseudotile = true;
@@ -84,11 +79,11 @@
       xwayland.force_zero_scaling = true;
 
       bindm = [
-        # "SUPER, mouse_down, exec, \"$HOME/.local/share/bin/switch-workspace.sh down\""
-        # "SUPER, mouse_up, exec, \"$HOME/.local/share/bin/switch-workspace.sh up\""
-        # "SUPER, mouse:272, movewindow"
-        # "SUPER, Z, movewindow"
-        # "SUPER, X, resizewindow"
+        # "SUPER, mouse_down, exec, $HOME/.local/share/bin/switch-workspace.sh down"
+        # "SUPER, mouse_up, exec, $HOME/.local/share/bin/switch-workspace.sh up"
+        "SUPER, mouse:272, movewindow"
+        "SUPER, Z, movewindow"
+        "SUPER, X, resizewindow"
       ];
 
       bind = [
@@ -103,8 +98,8 @@
         "SUPER, Backspace, exec, wlogout"
 
         "SUPER, T, exec, kitty"
-        "SUPER, E, exec, dolphin"
-        "SUPER, C, exec, code"
+        "SUPER, E, exec, yazi"
+        "SUPER, C, exec, nvim"
         "SUPER, F, exec, firefox"
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
@@ -113,7 +108,9 @@
 
         "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode |wl-copy"
 
-        "bind = SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
+        "SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
+
+        "SUPER, K, exec, $HOME/.local/share/bin/keybinds_hint.sh"
 
         ", F10, exec, $HOME/.local/share/bin/volumecontrol.sh -o m"
         ", F11, exec, $HOME/.local/share/bin/volumecontrol.sh -o d"
@@ -196,9 +193,9 @@
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
       ];
 
-      windowrulev2 = [
-        "opacity 0.85 0.75, class:^(firefox)$"
-      ];
+      # windowrulev2 = [
+      #   "opacity 0.85 0.75, class:^(firefox)$"
+      # ];
     };
   };
 }
