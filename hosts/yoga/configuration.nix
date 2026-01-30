@@ -5,6 +5,9 @@
 
   boot.loader.systemd-boot.enable = true;
   #  boot.loader.efi.canTouchEfiVariables = true;
+  services.xserver.displayManager.gdm.enable = false;
+
+
 
   # System Settings
   networking = {

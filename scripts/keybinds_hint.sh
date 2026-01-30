@@ -21,7 +21,7 @@ categoryFile="${hydeConfDir}/category.kb"
 dispatcherFile="${hydeConfDir}/dispatcher.kb"
 
 roDir="$confDir/rofi"
-roconf="$roDir/clipboard.rasi"
+roconf="$HOME/.config/rofi/user.rasi"
 
 HELP() {
   cat <<HELP

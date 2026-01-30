@@ -98,7 +98,7 @@
         "SUPER, Backspace, exec, wlogout"
 
         "SUPER, T, exec, kitty"
-        "SUPER, E, exec, yazi"
+        "SUPER, E, exec, kitty -e yazi"
         "SUPER, C, exec, nvim"
         "SUPER, F, exec, firefox"
 
