@@ -7,8 +7,9 @@
 {
   imports = [
     ./hyprland.nix
+    ./hyprlock.nix
+    ./hypridle/nix
     ./config.nix
-    ./windowrules.nix
     ./pyprland.nix
   ];
 }

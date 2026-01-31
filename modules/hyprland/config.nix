@@ -101,6 +101,8 @@
         "SUPER, E, exec, kitty -e yazi"
         "SUPER, C, exec, kitty -e nvim"
         "SUPER, F, exec, firefox"
+        "SUPER+Alt, T, exec, kitty --class kitty-dropterm"
+
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
         "SUPER, Tab, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh w"
