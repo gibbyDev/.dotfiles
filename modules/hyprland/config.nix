@@ -99,7 +99,7 @@
 
         "SUPER, T, exec, kitty"
         "SUPER, E, exec, kitty -e yazi"
-        "SUPER, C, exec, nvim"
+        "SUPER, C, exec, kitty -e nvim"
         "SUPER, F, exec, firefox"
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"

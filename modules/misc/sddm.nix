@@ -15,11 +15,5 @@
       };
     };
   };
-
-  # Make sure SDDM has themes available
-  environment.systemPackages = with pkgs; [
-    sddm
-    sddm-themes
-  ];
 }
 

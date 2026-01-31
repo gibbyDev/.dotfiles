@@ -8,7 +8,7 @@
     ./pywal.nix
     ./obsidian.nix
     ./dunst.nix
-    ./sddm.nix
+    # ./sddm.nix
     #./spotify.nix
     ./zsh.nix
   ];
