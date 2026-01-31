@@ -12,7 +12,7 @@
       };
 
       logo = {
-        # source = ./nixos.png;
+        source = ./me.png;
         type = "kitty-direct";
         height = 20;
         width = 30;
@@ -26,7 +26,7 @@
         "break"
         {
           type = "os";
-          key = "OS - BlackDon's OS";
+          key = "OS - GibbyDev's OS";
           keyColor = "31";
         }
         {
