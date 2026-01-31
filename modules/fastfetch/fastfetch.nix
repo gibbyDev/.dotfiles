@@ -14,7 +14,7 @@
       logo = {
         source = ./me.png;
         type = "kitty-direct";
-        height = 20;
+        height = 15;
         width = 30;
         padding = {
           top = 2;
