@@ -1,5 +1,5 @@
 {
   imports = [
-    ./fastfetch.nix
+    ./yazi.nix
   ];
 }
