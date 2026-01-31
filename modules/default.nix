@@ -12,5 +12,6 @@
     ./yazi
     ./nvim
     ./code
+    ./fastfetch
   ];
 }
