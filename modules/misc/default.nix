@@ -11,5 +11,6 @@
     # ./sddm.nix
     #./spotify.nix
     ./zsh.nix
+    ./zoxide.nix
   ];
 }

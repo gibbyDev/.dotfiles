@@ -8,9 +8,6 @@ in
     enable = true;
 
     profiles.cody = {
-      # ------------------------------
-      # 📚 Bookmarks (new submodule API)
-      # ------------------------------
       bookmarks = {
         force = true;
         settings = [
@@ -18,9 +15,23 @@ in
             name = "Toolbar";
             toolbar = true;
             bookmarks = [
-              { name = "NixOS"; url = "https://nixos.org"; }
-              { name = "GitHub"; url = "https://github.com/gibbyDev"; }
-              { name = "ProtonMail"; url = "https://protonmail.com"; }
+              {
+                name = "Dev";
+                bookmarks = [
+                  { name = "GitHub"; url = "https://github.com/gibbyDev"; }
+                  { name = "NixOS"; url = "https://nixos.org"; }
+                ];
+              }
+
+              {
+                name = "Mail";
+                bookmarks = [
+                  { name = "ProtonMail"; url = "https://protonmail.com"; }
+                ];
+              }
+
+              # You can still mix in loose bookmarks if you want
+              { name = "Search"; url = "https://duckduckgo.com"; }
             ];
           }
         ];
@@ -32,11 +43,11 @@ in
       settings = {
         "places.favicons.enabled" = true;
         "privacy.donottrackheader.enabled" = true;
-        "network.trr.mode" = 2; # DNS over HTTPS
+        "network.trr.mode" = 2;
       };
 
       # ------------------------------
-      # 🧩 Extensions (NUR / rycee + Bonjourr)
+      # 🧩 Extensions
       # ------------------------------
       extensions.packages = with firefoxAddons; [
         bitwarden
@@ -48,7 +59,6 @@ in
         tridactyl
         youtube-shorts-block
       ];
-
       userChrome = ''
                 /* ===================================================================
            LATIN ACCENT - FIREFOX TRANSPARENT THEME
