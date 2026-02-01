@@ -136,7 +136,7 @@
         "SUPER+ALT, G, exec, $HOME/.local/share/bin/gamemode.sh"
         "SUPER+ALT, Right, exec, $HOME/.local/share/bin/set-wallpaper.sh next"
         "SUPER+ALT, Left, exec, $HOME/.local/share/bin/set-wallpaper.sh prev"
-        "SUPER+ALT, Up, exec, $HOME/.local/share/bin/wbarconfgen.sh n"
+        "SUPER+SHIFT, W, exec, $HOME/.local/share/bin/set-wallpaper.sh rofi"
 
         "SUPER, Left, movefocus, l"
         "SUPER, Right, movefocus, r"

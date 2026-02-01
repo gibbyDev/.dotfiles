@@ -4,10 +4,7 @@
   imports = [ ./hardware-configuration.nix ]; # Include hardware scan results.
 
   boot.loader.systemd-boot.enable = true;
-  #  boot.loader.efi.canTouchEfiVariables = true;
-  services.xserver.displayManager.gdm.enable = false;
-
-
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   # System Settings
   networking = {
@@ -34,7 +31,6 @@
 
   programs.zsh.enable = true;
 
-
   # User Configuration
   users.users.cody = {
     isNormalUser = true;
@@ -44,17 +40,23 @@
     shell = pkgs.zsh;
   };
 
-  # Display & Audio Configuration
+  # Services Configuration
   services = {
+    # X server + Display Manager
     xserver = {
       enable = true;
-      #      xkb.layout = "dvorak";
+
+      displayManager = {
+        sddm.enable = true;
+      };
+
+      xkb = {
+        layout = "us,us";
+        variant = ",dvorak";
+        options = "grp:alt_shift_toggle";
+      };
     };
-    xserver.xkb = {
-      layout = "us,us";
-      variant = ",dvorak";
-      options = "grp:alt_shift_toggle";
-    };
+
     # PipeWire audio setup
     pipewire = {
       enable = true;
@@ -63,20 +65,18 @@
       pulse.enable = true;
       jack.enable = true;
     };
-
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+    kvmgt.enable = true;  # Correct namespace
+  };
 
   # Hyprland Window Manager
   programs.hyprland.enable = true;
 
-  # Virtualization (KVM/QEMU)
-  virtualisation = {
-    libvirtd.enable = true;
-    kvmgt.enable = true;
-  };
-
+  # Kernel modules
   boot.kernelModules = [
     "kvm"
     "kvm-intel"
@@ -142,12 +142,12 @@
     hyprshade
   ];
 
-  # Specify the SDDM theme configuration
-  # environment.etc."sddm.conf".text = lib.mkForce ''
-  #   [Theme]
-  #   Current=sugar-candy
-  # '';
-  #
+  # Optional: Specify the SDDM theme configuration
+  environment.etc."sddm.conf".text = lib.mkForce ''
+    [Theme]
+    Current=sugar-candy
+  '';
+
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

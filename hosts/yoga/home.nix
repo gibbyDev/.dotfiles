@@ -23,6 +23,7 @@
     ffmpeg
     unzip
     gimp
+    ripgrep
     neofetch
     fastfetch
     tree

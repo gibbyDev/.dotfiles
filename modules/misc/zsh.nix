@@ -19,6 +19,7 @@
       ll = lib.mkDefault "ls -lah";
       ".." = lib.mkDefault "cd ../";
        c = lib.mkDefault "clear";
+       z = lib.mkDefault "zoxide";
       ff = lib.mkDefault "fastfetch";
       gs = lib.mkDefault "git status";
       hmr = lib.mkDefault "home-manager switch --flake .";
