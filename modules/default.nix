@@ -6,7 +6,7 @@
     ./rofi
     ./tmux
     ./misc
-    #    ./dolphin
+    ./opencode
     ./waybar
     ./wlogout
     ./yazi

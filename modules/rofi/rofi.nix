@@ -114,7 +114,7 @@
     }
 
     textbox {
-        text-color: inherit;
+        text-color: @foreground;
         background-color: inherit;
     }
   '';

@@ -70,25 +70,6 @@
   on-click = "activate";
 };
 
-    #
-    # "hyprland/workspaces"= {
-    #     format = "{icon}";
-    #     format-icons= {
-    #         # "1"= " ";
-    #         # "2"= " ";
-    #         # "3"= " ";
-    #         # "4"= " ";
-    #         # "5"= " ";
-    #         # "6"= " ";
-    #         active= "";
-    #         default = "";
-    #         sort-by-number= true;
-    #     };
-    #     on-scroll-up = "hyprctl dispatch workspace e-1";
-    #     on-scroll-down = "hyprctl dispatch workspace e+1";
-    #     on-click = "activate";
-    # };
-
     memory= {
         format= " {}%";
         interval= 2;

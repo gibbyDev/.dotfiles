@@ -27,6 +27,7 @@
     neofetch
     fastfetch
     tree
+    chafa
     git
     chromium
     nodejs_20
@@ -34,6 +35,7 @@
     swww
     tailwindcss
     templ
+    imagemagick
     protobuf
     air
     pywal
