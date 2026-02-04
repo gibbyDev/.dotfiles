@@ -1,7 +1,18 @@
 # 🖥️ Cody’s Dotfiles
 
-![Desktop Screenshot 1](assets/screenshots/mock-desktop1.png)
-![Desktop Screenshot 2](assets/screenshots/mock-desktop2.png)
+<!-- Desktop screenshots (actual images) -->
+<p align="center">
+  <img src="imgs/260204_17h43m19s_screenshot.png" width="400" alt="Screenshot 1"/>
+  <img src="imgs/260204_17h44m14s_screenshot.png" width="400" alt="Screenshot 2"/>
+  <img src="imgs/260204_17h44m50s_screenshot.png" width="400" alt="Screenshot 3"/>
+  <img src="imgs/260204_17h47m38s_screenshot.png" width="400" alt="Screenshot 4"/>
+  <img src="imgs/260204_17h48m01s_screenshot.png" width="400" alt="Screenshot 5"/>
+  <img src="imgs/260204_17h49m57s_screenshot.png" width="400" alt="Screenshot 6"/>
+  <img src="imgs/260204_17h50m12s_screenshot.png" width="400" alt="Screenshot 7"/>
+  <img src="imgs/260204_17h50m28s_screenshot.png" width="400" alt="Screenshot 8"/>
+  <img src="imgs/260204_17h50m45s_screenshot.png" width="400" alt="Screenshot 9"/>
+  <img src="imgs/260204_17h52m05s_screenshot.png" width="400" alt="Screenshot 10"/>
+</p>
 
 ---
 
@@ -21,10 +32,22 @@ Welcome to my personal dotfiles repo! This setup uses [Nix Flakes](https://nixos
 
 ## Screenshots
 
-_A few mock images below for preview; replace these with real screenshots from your system!_
+<details>
+<summary>Click to expand all screenshots</summary>
 
-![Desktop Screenshot 1](assets/screenshots/mock-desktop1.png)
-![Desktop Screenshot 2](assets/screenshots/mock-desktop2.png)
+<p align="center">
+  <img src="imgs/260204_17h43m19s_screenshot.png" width="700" alt="Screenshot 1"/>
+  <img src="imgs/260204_17h44m14s_screenshot.png" width="700" alt="Screenshot 2"/>
+  <img src="imgs/260204_17h44m50s_screenshot.png" width="700" alt="Screenshot 3"/>
+  <img src="imgs/260204_17h47m38s_screenshot.png" width="700" alt="Screenshot 4"/>
+  <img src="imgs/260204_17h48m01s_screenshot.png" width="700" alt="Screenshot 5"/>
+  <img src="imgs/260204_17h49m57s_screenshot.png" width="700" alt="Screenshot 6"/>
+  <img src="imgs/260204_17h50m12s_screenshot.png" width="700" alt="Screenshot 7"/>
+  <img src="imgs/260204_17h50m28s_screenshot.png" width="700" alt="Screenshot 8"/>
+  <img src="imgs/260204_17h50m45s_screenshot.png" width="700" alt="Screenshot 9"/>
+  <img src="imgs/260204_17h52m05s_screenshot.png" width="700" alt="Screenshot 10"/>
+</p>
+</details>
 
 ---
 
@@ -38,10 +61,9 @@ _A few mock images below for preview; replace these with real screenshots from y
 ### Step 1: Clone the repository
 
 ```sh
-git clone https://github.com/<your-user>/<dotfiles-repo>.git ~/.dotfiles
+git clone https://github.com/gibbyDev/.dotfiles>.git ~/.dotfiles
 cd ~/.dotfiles
 ```
-_Replace `<your-user>` and `<dotfiles-repo>` with your GitHub username and repository name._
 
 ### Step 2: Install dependencies with Nix Flakes
 
@@ -69,16 +91,37 @@ Replace `<your-host>` with your hostname as defined in the `hosts/` directory.
 ---
 
 ## Directory Structure
+
 ```text
-.git/           # Repo source control
-flake.nix       # Nix flake entry point
-flake.lock      # Nix flake lock file
-hosts/          # Host-specific config
-modules/        # Modular configs (shell, editor, etc.)
-scripts/        # Utility/install scripts
-.vscode/        # VSCode settings (optional)
-wallpapers/     # Wallpaper images for desktop
-.p10k.zsh       # Powerlevel10k Zsh theme
+.
+├── flake.lock
+├── flake.nix
+├── hosts
+│   ├── desktop/
+│   ├── laptop/
+│   └── yoga/
+├── imgs
+├── modules
+│   ├── code/
+│   ├── default.nix
+│   ├── dolphin/
+│   ├── fastfetch/
+│   ├── firefox/
+│   ├── hyprland/
+│   ├── kitty/
+│   ├── misc/
+│   ├── nvim/
+│   ├── opencode/
+│   ├── rofi/
+│   ├── tmux/
+│   ├── virtualization/
+│   ├── waybar/
+│   ├── wlogout/
+│   └── yazi/
+├── .p10k.zsh
+├── README.md
+├── scripts
+└── wallpapers
 ```
 
 ---
@@ -101,5 +144,3 @@ MIT (or specify your own preferred license)
 Big thanks to the Nix, Home Manager, and Powerlevel10k communities!
 
 ---
-
-> Replace mock screenshots when ready for screenshots of your real desktop!
