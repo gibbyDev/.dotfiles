@@ -24,6 +24,8 @@
     unzip
     gimp
     ripgrep
+    fzf
+    opencode
     neofetch
     fastfetch
     tree
