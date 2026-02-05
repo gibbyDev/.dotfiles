@@ -2,6 +2,8 @@
 # install.sh - Setup Cody's Dotfiles Environment (Nix + Home Manager)
 
 set -e
+# Always cd to the parent (repo root) so all operations work from repo base directory
+cd "$(dirname "$0")/.."
 
 # Colors for prettiness
 green='\033[0;32m'
