@@ -37,11 +37,45 @@ fi
 
 ## Step 4: Detect host
 HOST="$(hostname)"
-if [[ ! -d "../hosts/$HOST" && ! -d "hosts/$HOST" ]]; then
+
+# Step 4a: Ensure hosts/ exists
+if [[ ! -d hosts ]]; then
+    warn "No hosts/ directory detected. Creating one."
+    mkdir hosts
+    info "Created hosts/ directory."
+fi
+
+# Step 4b: Prompt for host if needed; create scaffold if host missing
+if [[ ! -d "hosts/$HOST" ]]; then
     warn "No host config found for '$HOST' in hosts/."
-    info "Available hosts:"
-    ls -1 hosts/
+    ls -1 hosts/ || info "No hosts configured yet."
     read -rp "Enter the host name you want to use (type exactly): " HOST
+    if [[ ! -d "hosts/$HOST" ]]; then
+        info "Scaffolding minimal host config in hosts/$HOST ..."
+        mkdir -p "hosts/$HOST"
+        # Make home.nix
+        cat > "hosts/$HOST/home.nix" << EOF
+{ config, pkgs, ... }:
+{
+  home.username = "$USER";
+  home.homeDirectory = "/home/$USER";
+  programs.zsh.enable = true;
+  home.stateVersion = "24.05";
+}
+EOF
+        # Make configuration.nix
+        cat > "hosts/$HOST/configuration.nix" << EOF
+{ config, pkgs, ... }:
+{
+  imports = [ ];
+  networking.hostName = "$HOST";
+  system.stateVersion = "24.05";
+}
+EOF
+        info "Scaffolded hosts/$HOST/home.nix and configuration.nix."
+        warn "You MUST now add this new host to your flake.nix under nixosConfigurations and/or homeConfigurations."
+        info "See hosts/$HOST/home.nix and configuration.nix for templates."
+    fi
 fi
 info "Using host: $HOST"
 
