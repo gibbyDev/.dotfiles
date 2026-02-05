@@ -25,13 +25,14 @@
     gimp
     ripgrep
     fzf
+    lsd
+    lazygit
     opencode
     neofetch
     fastfetch
     tree
     chafa
     git
-    chromium
     nodejs_20
     # zig_0_12
     swww
@@ -58,11 +59,11 @@
   ################################
   # Zsh
   ################################
-  programs.zsh.shellAliases = {
-    ls = "ls --color=auto";
-    ll = "ls -lah --color=auto";
-  };
-
+  # programs.zsh.shellAliases = {
+  #   ls = "lsd --color=auto";
+  #   ll = "lsd -lah --color=auto";
+  # };
+  #
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
@@ -94,6 +95,13 @@
       rm -rf ~/Pictures/wallpapers/*
       cp -r ${../../wallpapers}/* ~/Pictures/wallpapers/
     '';
+
+  home.file.".config/lsd/colors.yaml".text = ''
+    date: "white"
+    user: "white"
+    group: "white"
+    # ...any other preferences
+  '';
 
   ################################
   programs.home-manager.enable = true;

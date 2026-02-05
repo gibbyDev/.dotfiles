@@ -16,13 +16,15 @@
 
     shellAliases = {
       # Defaults – hosts may override
-      ll = lib.mkDefault "ls -lah";
+      ls = lib.mkDefault "lsd --color=auto";
+      ll = lib.mkDefault "lsd -lah --color=auto";
       ".." = lib.mkDefault "cd ../";
        c = lib.mkDefault "clear";
        z = lib.mkDefault "zoxide";
       ff = lib.mkDefault "fastfetch";
       gs = lib.mkDefault "git status";
       hmr = lib.mkDefault "home-manager switch --flake .";
+      snr = lib.mkDefault "sudo nixos-rebuild switch --flake .";
       reload = lib.mkDefault "exec zsh";
     };
   };

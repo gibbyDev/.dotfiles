@@ -45,11 +45,11 @@
     # X server + Display Manager
     xserver = {
       enable = true;
-
-      displayManager = {
-        sddm.enable = true;
-      };
-
+      #
+      # displayManager = {
+      #   sddm.enable = true;
+      # };
+      #
       xkb = {
         layout = "us,us";
         variant = ",dvorak";
@@ -66,12 +66,13 @@
       jack.enable = true;
     };
   };
-
+  #
   virtualisation = {
-    docker.enable = true;
-    libvirtd.enable = true;
-    kvmgt.enable = true;  # Correct namespace
+    libvirtd.enable = true;        # Enables libvirt daemon and KVM support
+    # docker.enable = true;        # Enable this only if you want Docker
   };
+
+  programs.virt-manager.enable = true;
 
   # Hyprland Window Manager
   programs.hyprland.enable = true;
