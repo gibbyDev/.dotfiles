@@ -16,7 +16,6 @@
   ################################
   home.packages = with pkgs; [
     kitty
-    obs-studio
     screenkey
     docker
     tree
