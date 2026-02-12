@@ -27,6 +27,7 @@
           let baseName = baseNameOf path;
           in baseName != ".git" && baseName != ".direnv" && baseName != "result";
       };
+      host = builtins.getEnv "HOST";
     in
     {
       # NixOS system configuration
@@ -34,9 +35,7 @@
         nixos = lib.nixosSystem {
           inherit system;
           modules = [
-            #./hosts/desktop/configuration.nix
-            # ./hosts/laptop/configuration.nix
-            ./hosts/yoga/configuration.nix
+            ./hosts/${host}/configuration.nix
           ];
         };
       };
@@ -47,9 +46,7 @@
           inherit pkgs;
           extraSpecialArgs = { inherit src; }; # Pass `src` to `home.nix`
           modules = [
-            # ./hosts/laptop/home.nix
-            #./hosts/desktop/home.nix
-            ./hosts/yoga/home.nix
+            ./hosts/${host}/home.nix
           ];
         };
       };
