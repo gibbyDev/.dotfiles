@@ -1,6 +1,6 @@
 .vscode
 
-./hosts/desktop/
+hosts/desktop/
 ./hosts/laptop/
 ./hosts/yoga/
 
