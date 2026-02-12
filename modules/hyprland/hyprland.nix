@@ -18,6 +18,9 @@
   wayland.windowManager.hyprland.extraConfig = ''
     source = ~/.config/hypr/monitors.conf
     source = ~/.config/hypr/workspaces.conf
+    rule = float,class:floating-term
+    rule = center,class:floating-term
+    rule = size 400 200,class:floating-term
   '';
 
 }

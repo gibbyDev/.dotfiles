@@ -101,7 +101,7 @@
         "SUPER, E, exec, kitty -e yazi"
         "SUPER, C, exec, kitty -e nvim"
         "SUPER, F, exec, firefox"
-        "SUPER+Alt, T, exec, kitty --class kitty-dropterm"
+        "SUPER+ALT, T, exec, kitty --class floating-term"
 
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
@@ -151,10 +151,10 @@
         "SUPER+Shift, Up, resizeactive, 0 -30"
         "SUPER+Shift, Down, resizeactive, 0 30"
 
-        "SUPER+SHIFT+CTRL, left, exec, \"$HOME/.local/share/bin/move-floating.sh l -30\""
-        "SUPER+SHIFT+CTRL, right, exec, \"$HOME/.local/share/bin/move-floating.sh r 30\""
-        "SUPER+SHIFT+CTRL, up, exec, \"$HOME/.local/share/bin/move-floating.sh u -30\""
-        "SUPER+SHIFT+CTRL, down, exec, \"$HOME/.local/share/bin/move-floating.sh d 30\""
+        "SUPER+SHIFT+CTRL, left, exec, $HOME/.local/share/bin/move-floating.sh l"
+        "SUPER+SHIFT+CTRL, right, exec, $HOME/.local/share/bin/move-floating.sh r"
+        "SUPER+SHIFT+CTRL, up, exec, $HOME/.local/share/bin/move-floating.sh u"
+        "SUPER+SHIFT+CTRL, down, exec, $HOME/.local/share/bin/move-floating.sh d"
 
         "SUPER, 1, workspace, 1"
         "SUPER, 2, workspace, 2"
@@ -195,9 +195,12 @@
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
       ];
 
-      # windowrulev2 = [
-      #   "opacity 0.85 0.75, class:^(firefox)$"
-      # ];
+      rule = [
+        "float,class:(floating-term)"
+        "center,class:(floating-term)"
+        "size 400 200,class:(floating-term)"
+        "opacity 0.95 0.8,class:firefox"
+      ];
     };
   };
 }

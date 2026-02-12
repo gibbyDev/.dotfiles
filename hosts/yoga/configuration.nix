@@ -43,6 +43,7 @@
   # Services Configuration
   services = {
     # X server + Display Manager
+# docker.enable = true;
     xserver = {
       enable = true;
       #
@@ -69,7 +70,7 @@
   #
   virtualisation = {
     libvirtd.enable = true;        # Enables libvirt daemon and KVM support
-    # docker.enable = true;        # Enable this only if you want Docker
+    docker.enable = true;        # Enable this only if you want Docker
   };
 
   programs.virt-manager.enable = true;
@@ -104,6 +105,8 @@
     wget
     git
     docker
+    xhost
+    docker-compose
     gnumake42
     go
     cmake
@@ -141,6 +144,16 @@
     libnotify
     coreutils
     hyprshade
+    unityhub
+    pkg-config
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXinerama
+    xorg.libXi
+    mesa
+    libGL
+    alsa-lib
   ];
 
   # Optional: Specify the SDDM theme configuration

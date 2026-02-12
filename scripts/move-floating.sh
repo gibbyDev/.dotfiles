@@ -38,16 +38,16 @@
 STEP=50
 case "$1" in
   l)
-    hyprctl dispatch moveactive "-$STEP 0"
+    hyprctl dispatch moveactive -50 0
     ;;
   r)
-    hyprctl dispatch moveactive "$STEP 0"
+    hyprctl dispatch moveactive 50 0
     ;;
   u)
-    hyprctl dispatch moveactive "0 -$STEP"
+    hyprctl dispatch moveactive 0 -50
     ;;
   d)
-    hyprctl dispatch moveactive "0 $STEP"
+    hyprctl dispatch moveactive 0 50
     ;;
   *)
     echo "Usage: $0 {left|right|up|down}"

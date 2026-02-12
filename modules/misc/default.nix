@@ -7,6 +7,7 @@
     ./pipewire.nix
     ./pywal.nix
     ./obsidian.nix
+    ./obs-studio.nix
     ./dunst.nix
     # ./sddm.nix
     #./spotify.nix
