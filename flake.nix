@@ -56,7 +56,7 @@ in
       }) hostDirs
     );
 };
-
+}
 #   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
 #     let
 #       lib = nixpkgs.lib;
