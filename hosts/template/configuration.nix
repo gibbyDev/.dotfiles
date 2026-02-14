@@ -3,10 +3,25 @@
 {
   imports = [ ./hardware-configuration.nix ]; # Include hardware scan results.
 
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
+boot.loader.grub = {
+  enable = true;
+  efiSupport = true;
+  device = "nodev";
+  useOSProber = true;
+};
+
+boot.loader.efi.canTouchEfiVariables = true;
+  #
+  # boot.loader.grub = {
+  #   enable = true;
+  #   device = "/dev/sda";
+  #   useOSProber = true;
+  # };
+  #
 
   networking = {
-    hostName = "nixos";
+    hostName = "REPLACE_HOST";
     networkmanager.enable = true; # Enable NetworkManager
   };
 
@@ -30,33 +45,56 @@
   programs.zsh.enable = true;
 
   # User Configuration
-  users.users.cody = {
+  users.users.REPLACE_USER = {
     isNormalUser = true;
-    description = "cody";
+    description = "REPLACE_USER";
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "qemu" "docker" ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
-  services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us,us";
-        variant = ",dvorak";
-        options = "grp:alt_shift_toggle";
-      };
-    };
+  # services = {
+  #   xserver = {
+  #     enable = true;
+  #     xkb = {
+  #       layout = "us,us";
+  #       variant = ",dvorak";
+  #       options = "grp:alt_shift_toggle";
+  #     };
+  #   };
+  #
+  #   # PipeWire audio setup
+  #   pipewire = {
+  #     enable = true;
+  #     alsa.enable = true;
+  #     alsa.support32Bit = true;
+  #     pulse.enable = true;
+  #     jack.enable = true;
+  #   };
+  # };
+services = {
+  xserver = {
+    enable = true;
+    xkb.layout = "us";
 
-    # PipeWire audio setup
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
+    displayManager.sddm.enable = true;
+    displayManager.defaultSession = "hyprland";
   };
+
+  displayManager.sddm = {
+    enable = true;
+    wayland.enable = true; # important for Hyprland
+    theme = "sddm-sugar-dark";
+  };
+
+  pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+};
 
   virtualisation = {
     libvirtd.enable = true;        # Enables libvirt daemon and KVM support
@@ -140,14 +178,29 @@
     mesa
     libGL
     alsa-lib
+    (pkgs.stdenv.mkDerivation {
+      pname = "sugar-candy-sddm-theme";
+      version = "latest";
+      src = pkgs.fetchFromGitHub {
+        owner = "MarianArlt";
+        repo = "sddm-sugar-dark";
+        rev = "master";
+        sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
+      };
+      installPhase = ''
+        mkdir -p $out/share/sddm/themes/sddm-sugar-dark
+        cp -r * $out/share/sddm/themes/sddm-sugar-dark
+      '';
+    })
+
   ];
 
   # Optional: Specify the SDDM theme configuration
-  environment.etc."sddm.conf".text = lib.mkForce ''
-    [Theme]
-    Current=sugar-candy
-  '';
-
+  # environment.etc."sddm.conf".text = lib.mkForce ''
+  #   [Theme]
+  #   Current=sddm-sugar-dark
+  # '';
+  #
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

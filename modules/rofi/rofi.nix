@@ -4,12 +4,11 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi;
-
-    theme = "user";
+    theme = "user"; # default theme
   };
 
   xdg.configFile."rofi/user.rasi".text = ''
-    // Config //
+        // Config //
     configuration {
         modi:         "drun,run,window";
         show-icons:   true;
@@ -116,6 +115,89 @@
     textbox {
         text-color: @foreground;
         background-color: inherit;
+    }
+  '';
+
+  xdg.configFile."rofi/wallpaper.rasi".text = ''
+    configuration {
+        modi:                        "drun";
+        show-icons:                  true;
+        drun-display-format:         "{name}";
+    }
+
+    @theme "~/.config/rofi/colors.rasi"
+
+    window {
+        enabled:                     true;
+        fullscreen:                  false;
+        width:                       100%;
+        transparency:                "real";
+        cursor:                      "default";
+        spacing:                     0px;
+        padding:                     0px;
+        border:                      0px;
+        border-radius:               0px;
+        border-color:                transparent;
+        background-color:            transparent;
+    }
+
+    mainbox {
+        enabled:                     true;
+        children:                    [ "listview" ];
+        background-color:            @background;
+    }
+
+    listview {
+        enabled:                     true;
+        columns:                     6;
+        lines:                       1;
+        spacing:                     10px 20px;
+        padding:                     20px 10px;
+        cycle:                       true;
+        dynamic:                     false;
+        scrollbar:                   false;
+        layout:                      vertical;
+        reverse:                     false;
+        fixed-height:                false;
+        height: 40px;
+        fixed-columns:               true;
+        cursor:                      "default";
+        background-color:            transparent;
+        text-color:                  transparent;
+    }
+
+    element {
+        enabled:                     true;
+        orientation:                 horizontal;
+        spacing:                     0px;
+        padding:                     4px;
+        border-radius:               4px;
+        cursor:                      pointer;
+        background-color:            transparent;
+        text-color:                  transparent;
+    }
+
+    @media(max-aspect-ratio: 1.8) {
+        element {
+            orientation:             vertical;
+        }
+    }
+
+    element selected.normal {
+        background-color:            @foreground;
+        text-color:                  transparent;
+    }
+
+    element-icon {
+        size:                        50%;
+            border-radius:				 4px;
+        cursor:                      inherit;
+        background-color:            transparent;
+        text-color:                  transparent;
+    }
+
+    element-text {
+      enabled: false;
     }
   '';
 }

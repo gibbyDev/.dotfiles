@@ -74,24 +74,25 @@ prev_wallpaper() {
     echo "$CURRENT_INDEX" > "$INDEX_FILE"
     set_wallpaper
 }
-
-# -----------------------------
-# ROFI SELECTION FUNCTION
-# -----------------------------
 select_wallpaper_rofi() {
-    # Build list of wallpaper filenames
-    local choices=()
-    for wp in "${WALLPAPERS[@]}"; do
-        choices+=("$(basename "$wp")")
-    done
+    local THUMB_DIR="$HOME/.cache/wallpaper-thumbs"
 
-    # Run Rofi in dmenu mode
-    local selected=$(printf '%s\n' "${choices[@]}" | \
-        rofi -dmenu -i -p "Select Wallpaper" -theme "$ROFI_CONFIG_DIR/user.rasi" \
-        -mesg "Use arrow keys to scroll, Enter to select")
+    local selected=$(
+        for wp in "${WALLPAPERS[@]}"; do
+            filename="$(basename "$wp")"
+            name_no_ext="${filename%.*}"
+
+            thumb=$(find "$THUMB_DIR" -maxdepth 1 -type f -name "${name_no_ext}_*.png" | head -n1)
+
+            [[ -z "$thumb" ]] && thumb="$wp"
+
+            # IMPORTANT: real null byte + icon metadata
+            printf "%s\0icon\x1f%s\n" "$filename" "$thumb"
+        done | rofi -dmenu -i -show-icons \
+            -theme "$HOME/.config/rofi/wallpaper.rasi"
+    )
 
     if [[ -n "$selected" ]]; then
-        # Find the index of selected wallpaper
         for i in "${!WALLPAPERS[@]}"; do
             if [[ "$(basename "${WALLPAPERS[$i]}")" == "$selected" ]]; then
                 CURRENT_INDEX=$i
@@ -103,9 +104,6 @@ select_wallpaper_rofi() {
     fi
 }
 
-# -----------------------------
-# MAIN
-# -----------------------------
 case "$1" in
     next)
         next_wallpaper

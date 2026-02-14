@@ -5,8 +5,8 @@
     ../../modules
   ];
 
-  home.username = "cody";
-  home.homeDirectory = "/home/cody";
+  home.username = "REPLACE_USER";
+  home.homeDirectory = "/home/REPLACE_USER";
   home.stateVersion = "24.11";
 
   nixpkgs.config.allowUnfree = true;

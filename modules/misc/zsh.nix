@@ -19,12 +19,15 @@
       ls = lib.mkDefault "lsd --color=auto";
       ll = lib.mkDefault "lsd -lah --color=auto";
       ".." = lib.mkDefault "cd ../";
+       v = lib.mkDefault "nvim .";
        c = lib.mkDefault "clear";
        z = lib.mkDefault "zoxide";
+      op = lib.mkDefault "opencode .";
       ff = lib.mkDefault "fastfetch";
       gs = lib.mkDefault "git status";
       hmr = lib.mkDefault "home-manager switch --flake .";
       snr = lib.mkDefault "sudo nixos-rebuild switch --flake .";
+      ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       reload = lib.mkDefault "exec zsh";
     };
   };
