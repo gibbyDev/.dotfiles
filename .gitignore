@@ -3,4 +3,4 @@
 hosts/desktop/
 hosts/laptop/
 hosts/yoga/
-
+hardware-configuration.nix

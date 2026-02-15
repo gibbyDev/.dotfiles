@@ -11,9 +11,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  ################################
-  # Packages
-  ################################
   home.packages = with pkgs; [
     kitty
     screenkey
@@ -33,8 +30,7 @@
     chafa
     git
     nodejs_20
-    # zig_0_12
-    swww
+    zig
     tailwindcss
     templ
     imagemagick
@@ -55,31 +51,14 @@
     '')
   ];
 
-  ################################
-  # Zsh
-  ################################
-  # programs.zsh.shellAliases = {
-  #   ls = "lsd --color=auto";
-  #   ll = "lsd -lah --color=auto";
-  # };
-  #
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
-  ################################
-  # Dircolors
-  ################################
   programs.dircolors.enable = true;
 
-  ################################
-  # Powerlevel10k
-  ################################
   home.file.".p10k.zsh".source = ../../.p10k.zsh;
-
-  ################################
-  # Activation scripts
-  ################################
+  
   home.activation.copyScripts =
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p ~/.local/share/bin
@@ -102,7 +81,6 @@
     # ...any other preferences
   '';
 
-  ################################
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
 }
 

@@ -8,8 +8,7 @@
         "${pkgs.swww}/bin/swww-daemon &"
         "networkmanagerapplet --indicator &"
         "$HOME/.local/share/bin/set-wallpaper.sh &"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
+        "${pkgs.stash}/bin/stash watch &"
       ];
 
       env = [
@@ -108,7 +107,7 @@
         "SUPER, Tab, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh w"
         "SUPER+SHIFT, E, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh f"
 
-        "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode |wl-copy"
+        "SUPER, V, exec, stash list | rofi -dmenu | stash decode | wl-copy"
 
         "SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
 

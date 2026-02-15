@@ -49,16 +49,16 @@ fi
 
 case "${main_action}" in
 "History")
-    selected_item=$(cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"History...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+    selected_item=$(stash list | rofi -dmenu -theme-str "entry { placeholder: \"History...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
     if [ -n "$selected_item" ]; then
-        echo "$selected_item" | cliphist decode | wl-copy
+        echo "$selected_item" | stash decode | wl-copy
         notify-send "Copied to clipboard."
     fi
     ;;
 "Delete")
-    selected_item=$(cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+    selected_item=$(stash list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
     if [ -n "$selected_item" ]; then
-        echo "$selected_item" | cliphist delete
+        echo "$selected_item" | stash delete
         notify-send "Deleted."
     fi
     ;;
@@ -100,10 +100,9 @@ case "${main_action}" in
     case "${manage_action}" in
     "Add to Favorites")
         # Show clipboard history to add to favorites
-        item=$(cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Add to Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+        item=$(stash list | rofi -dmenu -theme-str "entry { placeholder: \"Add to Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
         if [ -n "$item" ]; then
-            # Decode the item from clipboard history
-            full_item=$(echo "$item" | cliphist decode)
+            full_item=$(echo "$item" | stash decode)
             encoded_item=$(echo "$full_item" | base64 -w 0)
             
             # Check if the item is already in the favorites file
@@ -172,7 +171,7 @@ case "${main_action}" in
         ;;
 "Clear History")
     if [ "$(echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")" == "Yes" ] ; then
-        cliphist wipe
+        stash db wipe --expired
         notify-send "Clipboard history cleared."
     fi
     ;;

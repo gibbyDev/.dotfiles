@@ -1,12 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ]; # Include hardware scan results.
 
-  boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
+  };
 
-  # System Settings
+  boot.loader.efi.canTouchEfiVariables = true;
   networking = {
     hostName = "nixos";
     networkmanager.enable = true; # Enable NetworkManager
@@ -31,7 +35,6 @@
 
   programs.zsh.enable = true;
 
-  # User Configuration
   users.users.cody = {
     isNormalUser = true;
     description = "cody";
@@ -40,25 +43,26 @@
     shell = pkgs.zsh;
   };
 
-  # Services Configuration
+  home-manager.users.cody = import ./home.nix;
+
+  nixpkgs.overlays = [
+    inputs.nur.overlays.default
+  ];
+
   services = {
-    # X server + Display Manager
-# docker.enable = true;
     xserver = {
       enable = true;
-      #
-      # displayManager = {
-      #   sddm.enable = true;
-      # };
-      #
-      xkb = {
-        layout = "us,us";
-        variant = ",dvorak";
-        options = "grp:alt_shift_toggle";
-      };
+      xkb.layout = "us";
+      displayManager.sddm.enable = true;
+      displayManager.defaultSession = "hyprland";
     };
 
-    # PipeWire audio setup
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true; # important for Hyprland
+      theme = "sddm-sugar-dark";
+    };
+
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -67,7 +71,7 @@
       jack.enable = true;
     };
   };
-  #
+
   virtualisation = {
     libvirtd.enable = true;        # Enables libvirt daemon and KVM support
     docker.enable = true;        # Enable this only if you want Docker
@@ -75,17 +79,14 @@
 
   programs.virt-manager.enable = true;
 
-  # Hyprland Window Manager
   programs.hyprland.enable = true;
 
-  # Kernel modules
   boot.kernelModules = [
     "kvm"
     "kvm-intel"
     "v4l2loopback"
   ];
 
-  # Fonts Configuration
   fonts = {
     fontconfig.enable = true;
     fontconfig.defaultFonts.monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
@@ -99,7 +100,6 @@
     ];
   };
 
-  # System Packages
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -121,7 +121,7 @@
     xcolor
     adb-sync
     wl-clipboard
-    cliphist
+    stash
     libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback # Kernel module for virtual webcam
     alsa-utils # Audio support
@@ -154,14 +154,29 @@
     mesa
     libGL
     alsa-lib
+    (pkgs.stdenv.mkDerivation {
+      pname = "sugar-candy-sddm-theme";
+      version = "latest";
+      src = pkgs.fetchFromGitHub {
+        owner = "MarianArlt";
+        repo = "sddm-sugar-dark";
+        rev = "master";
+        sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
+      };
+      installPhase = ''
+        mkdir -p $out/share/sddm/themes/sddm-sugar-dark
+        cp -r * $out/share/sddm/themes/sddm-sugar-dark
+      '';
+    })
+
   ];
 
   # Optional: Specify the SDDM theme configuration
-  environment.etc."sddm.conf".text = lib.mkForce ''
-    [Theme]
-    Current=sugar-candy
-  '';
-
+  # environment.etc."sddm.conf".text = lib.mkForce ''
+  #   [Theme]
+  #   Current=sddm-sugar-dark
+  # '';
+  #
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

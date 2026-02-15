@@ -1,25 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ]; # Include hardware scan results.
 
-  # boot.loader.systemd-boot.enable = true;
-boot.loader.grub = {
-  enable = true;
-  efiSupport = true;
-  device = "nodev";
-  useOSProber = true;
-};
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
+  };
 
-boot.loader.efi.canTouchEfiVariables = true;
-  #
-  # boot.loader.grub = {
-  #   enable = true;
-  #   device = "/dev/sda";
-  #   useOSProber = true;
-  # };
-  #
-
+  boot.loader.efi.canTouchEfiVariables = true;
   networking = {
     hostName = "REPLACE_HOST";
     networkmanager.enable = true; # Enable NetworkManager
@@ -44,7 +35,6 @@ boot.loader.efi.canTouchEfiVariables = true;
 
   programs.zsh.enable = true;
 
-  # User Configuration
   users.users.REPLACE_USER = {
     isNormalUser = true;
     description = "REPLACE_USER";
@@ -53,48 +43,34 @@ boot.loader.efi.canTouchEfiVariables = true;
     shell = pkgs.zsh;
   };
 
-  # services = {
-  #   xserver = {
-  #     enable = true;
-  #     xkb = {
-  #       layout = "us,us";
-  #       variant = ",dvorak";
-  #       options = "grp:alt_shift_toggle";
-  #     };
-  #   };
-  #
-  #   # PipeWire audio setup
-  #   pipewire = {
-  #     enable = true;
-  #     alsa.enable = true;
-  #     alsa.support32Bit = true;
-  #     pulse.enable = true;
-  #     jack.enable = true;
-  #   };
-  # };
-services = {
-  xserver = {
-    enable = true;
-    xkb.layout = "us";
+  home-manager.users.REPLACE_USER = import ./home.nix;
 
-    displayManager.sddm.enable = true;
-    displayManager.defaultSession = "hyprland";
-  };
+  nixpkgs.overlays = [
+    inputs.nur.overlays.default
+  ];
 
-  displayManager.sddm = {
-    enable = true;
-    wayland.enable = true; # important for Hyprland
-    theme = "sddm-sugar-dark";
-  };
+  services = {
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
+      displayManager.sddm.enable = true;
+      displayManager.defaultSession = "hyprland";
+    };
 
-  pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true; # important for Hyprland
+      theme = "sddm-sugar-dark";
+    };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
-};
 
   virtualisation = {
     libvirtd.enable = true;        # Enables libvirt daemon and KVM support
@@ -139,13 +115,12 @@ services = {
     networkmanagerapplet
     pywalfox-native
     droidcam
-    android-tools
-    davinci-resolve
+    kdenlive
     vlc
     xcolor
     adb-sync
     wl-clipboard
-    cliphist
+    stash
     libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback # Kernel module for virtual webcam
     alsa-utils # Audio support
