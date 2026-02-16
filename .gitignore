@@ -1,7 +1,6 @@
 .vscode
 
 hosts/desktop/
-hosts/nixos/
 hosts/laptop/
 hosts/yoga/
 hardware-configuration.nix
