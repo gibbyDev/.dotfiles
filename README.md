@@ -1,4 +1,4 @@
-# 🖥️ Cody’s Dotfiles
+# 🖥️ ParanaOS
 
 <!-- Desktop screenshots (actual images) -->
 <p align="center">
@@ -73,10 +73,11 @@ If you don’t have flakes enabled, run:
 nix --experimental-features 'nix-command flakes' flake show
 ```
 
-To apply the full home-manager config (if used):
+Run the installer to rebuild system and home manager modules:
 
 ```sh
-nix run .#homeConfigurations.<your-host>.activationPackage
+chmod +x install.sh
+./install.sh
 ```
 
 Replace `<your-host>` with your hostname as defined in the `hosts/` directory.
@@ -97,9 +98,7 @@ Replace `<your-host>` with your hostname as defined in the `hosts/` directory.
 ├── flake.lock
 ├── flake.nix
 ├── hosts
-│   ├── desktop/
-│   ├── laptop/
-│   └── yoga/
+│   └── template/
 ├── imgs
 ├── modules
 │   ├── code/
