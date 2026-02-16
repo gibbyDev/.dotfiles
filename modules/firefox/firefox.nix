@@ -19,6 +19,7 @@ in
                 name = "Dev";
                 bookmarks = [
                   { name = "GitHub"; url = "https://github.com/gibbyDev"; }
+                  { name = "ChatGPT"; url = "https://chatgpt.com"; }
                   { name = "Hostinger"; url = "https://hostinger.com"; }
                   { name = "NixOS"; url = "https://nixos.org"; }
                 ];
@@ -54,6 +55,7 @@ in
         "places.favicons.enabled" = true;
         "privacy.donottrackheader.enabled" = true;
         "network.trr.mode" = 2;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
 
       # ------------------------------
