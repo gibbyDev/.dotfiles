@@ -7,7 +7,7 @@ in
   programs.firefox = {
     enable = true;
 
-    profiles.cody = {
+    profiles.default = {
       bookmarks = {
         force = true;
         settings = [
@@ -19,7 +19,16 @@ in
                 name = "Dev";
                 bookmarks = [
                   { name = "GitHub"; url = "https://github.com/gibbyDev"; }
+                  { name = "Hostinger"; url = "https://hostinger.com"; }
                   { name = "NixOS"; url = "https://nixos.org"; }
+                ];
+              }
+              {
+                name = "Servers";
+                bookmarks = [
+                  { name = "8080"; url = "https://localhost:8080"; }
+                  { name = "3000"; url = "https://localhost:3000"; }
+                  { name = "5000"; url = "https://localhost:5000"; }
                 ];
               }
 
@@ -27,6 +36,7 @@ in
                 name = "Mail";
                 bookmarks = [
                   { name = "ProtonMail"; url = "https://protonmail.com"; }
+                  { name = "Gmail"; url = "https://gmail.com"; }
                 ];
               }
 
@@ -50,7 +60,6 @@ in
       # 🧩 Extensions
       # ------------------------------
       extensions.packages = with firefoxAddons; [
-        bitwarden
         pywalfox
         vimium
         ublock-origin

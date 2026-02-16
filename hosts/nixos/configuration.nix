@@ -102,6 +102,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    lastpass-cli
     wget
     git
     docker
