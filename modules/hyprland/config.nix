@@ -100,7 +100,7 @@
         "SUPER, E, exec, kitty -e yazi"
         "SUPER, C, exec, kitty -e nvim"
         "SUPER, F, exec, firefox"
-        "SUPER+ALT, T, exec, kitty --class floating-term"
+        # "SUPER+ALT, T, exec, kitty --class floating-term"
 
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
@@ -193,13 +193,13 @@
         "SUPER+Alt, 9, movetoworkspacesilent, 9"
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
       ];
-
-      rule = [
-        "float,class:(floating-term)"
-        "center,class:(floating-term)"
-        "size 400 200,class:(floating-term)"
-        "opacity 0.95 0.8,class:firefox"
-      ];
+      #
+      # rule = [
+      #   "float,class:(floating-term)"
+      #   "center,class:(floating-term)"
+      #   "size 400 200,class:(floating-term)"
+      #   "opacity 0.95 0.8,class:firefox"
+      # ];
     };
   };
 }
