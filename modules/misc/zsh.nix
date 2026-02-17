@@ -25,6 +25,12 @@
       op = lib.mkDefault "opencode .";
       ff = lib.mkDefault "fastfetch";
       gs = lib.mkDefault "git status";
+      rgi = lib.mkDefault ''
+        rg --color=always --line-number --no-heading --smart-case . |
+        fzf --ansi --delimiter : \
+          --preview "bat --style=full --color=always --highlight-line {2} {1}" \
+          --preview-window "~4,+{2}+4/3,<80(up)"
+      '';
       hmr = lib.mkDefault "home-manager switch --flake .";
       snr = lib.mkDefault "sudo nixos-rebuild switch --flake .";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
