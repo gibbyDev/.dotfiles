@@ -27,7 +27,6 @@
     neofetch
     fastfetch
     tree
-    chafa
     git
     nodejs_20
     zig
@@ -80,7 +79,5 @@
     group: "white"
     # ...any other preferences
   '';
-
-  # programs.home-manager.enable = true;
 }
 

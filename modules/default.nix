@@ -6,6 +6,7 @@
     ./rofi
     ./tmux
     ./misc
+    ./swaync
     # ./opencode
     ./waybar
     ./wlogout

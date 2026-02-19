@@ -115,9 +115,8 @@
     gdb
     networkmanagerapplet
     pywalfox-native
-    droidcam
-    android-tools
-    davinci-resolve
+ #   droidcam
+#    kdenlive
     vlc
     xcolor
     adb-sync

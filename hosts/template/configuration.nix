@@ -115,8 +115,8 @@
     gdb
     networkmanagerapplet
     pywalfox-native
-    droidcam
-    kdenlive
+ #   droidcam
+#    kdenlive
     vlc
     xcolor
     adb-sync
