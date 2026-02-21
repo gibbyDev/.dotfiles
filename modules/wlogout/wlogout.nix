@@ -40,6 +40,8 @@
       }
     ];
     style = ''
+      @import url("./colors.css");
+
       * {
         font-family: "JetBrainsMono NF", FontAwesome, sans-serif;
         background-image: none;

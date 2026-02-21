@@ -28,11 +28,12 @@
     fastfetch
     tree
     git
-    nodejs_20
+    nodejs_22
     zig
     tailwindcss
     templ
     imagemagick
+    go-blueprint
     protobuf
     air
     pywal

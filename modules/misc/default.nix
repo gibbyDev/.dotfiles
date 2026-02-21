@@ -10,7 +10,7 @@
     ./obs-studio.nix
     ./dunst.nix
     # ./sddm.nix
-    #./spotify.nix
+    ./spotify.nix
     ./zsh.nix
     ./zoxide.nix
   ];

@@ -19,26 +19,26 @@ in
     }
 
     window#waybar {
-        background-color: @color0;
+        background-color: transparent;
     }
 
     .modules-left {
         background-color: @color0;
-        border-radius: 24px;
+        border-radius: 0px;
         padding-right: 8px;
         padding-left: 15px;
     }
 
     .modules-center {
         background-color: @color0;
-        border-radius: 24px;
+        border-radius: 0px;
         padding-right: 10px;
         padding-left: 10px;
     }
 
     .modules-right {
         background-color: @color0;
-        border-radius: 24px;
+        border-radius: 0;
         padding-right: 15px;
         padding-left: 15px;
     }
@@ -136,6 +136,10 @@ in
 
     #custom-right-arr {
         color: @color4;
+    }
+
+    #custom-power {
+    color: @color7
     }
 
     #network {

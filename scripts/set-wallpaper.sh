@@ -50,6 +50,7 @@ set_wallpaper() {
     cp "$HOME/.cache/wal/colors-waybar.css" "$WAYBAR_CONFIG_DIR/colors-waybar.css"
     cp "$HOME/.cache/wal/colors-waybar.css" "$HOME/.config/wlogout/colors-waybar.css"
     cp "$HOME/.cache/wal/colors-wal.vim" "$HOME/.config/nvim/colors-wal.vim"
+    cp "$HOME/.cache/wal/colors.css" "$HOME/.config/wlogout/colors.css"
 
     # Extract Rofi colors
     extract_rofi_colors
