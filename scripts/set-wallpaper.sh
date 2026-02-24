@@ -57,6 +57,8 @@ set_wallpaper() {
 
     # Copy current wallpaper for Rofi preview
     copy_current_wallpaper "$wallpaper"
+    
+    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
     # Reload nvim colors if running
     if pgrep nvim > /dev/null; then

@@ -134,6 +134,14 @@ in
         border-radius: 0px 5px 5px 0px;
     }
 
+    #custom-swaync {
+        color: @color7;
+    }
+
+    #custom-cava_mviz {
+        color: @color8;
+    } 
+
     #custom-right-arr {
         color: @color4;
     }

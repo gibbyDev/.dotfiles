@@ -38,6 +38,7 @@
     air
     pywal
     bat
+    cava
     w3m
     nwg-displays
     (writeShellScriptBin "protoc-gen-go" ''

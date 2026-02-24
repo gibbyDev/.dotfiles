@@ -3,16 +3,14 @@
 
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
-    plugins = [
-      "scratchpads",
-    ]
+plugins = ["scratchpads"]
 
-    [scratchpads.term]
-    animation = "fromTop"
-    command = "kitty --class kitty-dropterm"
-    class = "kitty-dropterm"
-    size = "70% 70%"
-    max_size = "1920px 100%"
-    position = "150px 150px"
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class dropterm"
+class = "dropterm"
+size = "70% 70%"
+position = "center"
+lazy = true
   '';
 }

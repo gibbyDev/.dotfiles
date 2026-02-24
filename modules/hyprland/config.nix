@@ -101,7 +101,7 @@
         "SUPER, E, exec, kitty -e yazi"
         "SUPER, C, exec, kitty -e nvim"
         "SUPER, F, exec, firefox"
-        "SUPER+ALT, T, exec, pypr toggle term"
+        "SUPER+Alt, T, exec, kitty --class floating-term"
 
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
@@ -150,8 +150,8 @@
         "SUPER+Shift, Left, resizeactive, -30 0"
         "SUPER+Shift, Up, resizeactive, 0 -30"
         "SUPER+Shift, Down, resizeactive, 0 30"
-        "SUPER+Shift,minus,resizewindowpixel,-30% -30%"
-        "SUPER+Shift,equal,resizewindowpixel,30% 30%"
+        "SUPER+Shift, minus, resizeactive, -30% -30%"
+        "SUPER+Shift, equal, resizeactive, 30% 30%"
 
 
         "SUPER+SHIFT+CTRL, left, exec, $HOME/.local/share/bin/move-floating.sh l"
@@ -197,7 +197,7 @@
         "SUPER+Alt, 9, movetoworkspacesilent, 9"
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
       ];
-      #
+#
       # rule = [
       #   "float,class:(floating-term)"
       #   "center,class:(floating-term)"

@@ -14,5 +14,6 @@
     ./nvim
     ./code
     ./fastfetch
+    ./dev
   ];
 }

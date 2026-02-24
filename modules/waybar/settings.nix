@@ -17,7 +17,7 @@
         "custom/separator"
         "clock"
         "custom/separator"
-        "custom/cava_mviz"
+        "custom/swaync"
     ];
 
     modules-center= [
@@ -26,12 +26,12 @@
 
     modules-right= [
         #"hyprland/window"
+        "custom/cava_mviz"
         "network"
         "pulseaudio#audio"
         "pulseaudio#mic"
         "battery"
         "custom/power"
-        "custom/swaync"
         "custom/separator"
     ];
 
@@ -92,7 +92,7 @@
 
 
     network = {
-      format-wifi = " ";
+      format-wifi = "  ";
       format-ethernet = "";
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
@@ -186,13 +186,14 @@
 
         "custom/cava_mviz" = {
           exec = "~/.local/share/bin/waybar-cava.sh";
-          format = "<span color='#a6e3a1'>[</span> {} <span color='#a6e3a1'>]</span>";
+          format = "<span></span> {} <span></span>";
+          tooltip = false;
         };
 
         "custom/swaync" = {
           tooltip = true;
           "tooltip-format" = "Left Click: Launch Notification Center\nRight Click: Do not Disturb";
-          format = "{} {icon} ";
+          format = " {icon} ";
           "format-icons" = {
             notification = "<span foreground='red'><sup></sup></span>";
             none = "";
@@ -214,7 +215,7 @@
 
     "custom/icon"= {
         format= "";
-        on-click= "sh -c 'rofi -show drun &'";
+        on-click= "sh -c 'rofi -show drun -theme fullscreen-grid &'";
         tooltip= "App Launcher";
     };
 
