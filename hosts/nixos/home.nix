@@ -17,6 +17,7 @@
     docker
     tree
     ffmpeg
+    tilt
     unzip
     gimp
     ripgrep
