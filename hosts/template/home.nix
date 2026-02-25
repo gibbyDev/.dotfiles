@@ -17,6 +17,7 @@
     docker
     tree
     ffmpeg
+    tilt
     unzip
     gimp
     ripgrep
@@ -28,15 +29,17 @@
     fastfetch
     tree
     git
-    nodejs_20
+    nodejs_22
     zig
     tailwindcss
     templ
     imagemagick
+    go-blueprint
     protobuf
     air
     pywal
     bat
+    cava
     w3m
     nwg-displays
     (writeShellScriptBin "protoc-gen-go" ''

@@ -122,6 +122,7 @@
     adb-sync
     wl-clipboard
     stash
+    nwg-look
     libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback # Kernel module for virtual webcam
     alsa-utils # Audio support
