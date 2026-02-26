@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-  walColors = "${config.home.homeDirectory}/.cache/wal/colors.css";
+  walColors = "${config.xdg.cacheHome}/wal/colors.css";
+  isValidUser = config.home.username != "REPLACE_USER";
 in
 {
   home.packages = with pkgs; [
@@ -31,7 +32,7 @@ in
     widget-order = music,volume,brightness,network,battery
   '';
 
-  xdg.configFile."swaync/style.css".text = ''
+  xdg.configFile."swaync/style.css".text = lib.mkIf isValidUser ''
     @import url("file://${walColors}");
 
     .control-center {

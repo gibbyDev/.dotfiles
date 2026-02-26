@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   programs.wlogout = {
     enable = true;
     layout = [
@@ -40,7 +40,7 @@
       }
     ];
     style = ''
-      @import url("./colors.css");
+      @import url("./colors-waybar.css");
 
       * {
         font-family: "JetBrainsMono NF", FontAwesome, sans-serif;
@@ -48,25 +48,25 @@
         transition: 20ms;
       }
       window {
-        background-color: rgba(30, 30, 46, 0.8); /* base00 */
+        background-color: alpha(@background, 0.8);
       }
       button {
-        color: #D9E0EE; /* base05 */
+        color: @foreground;
         font-size: 20px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 15%;
         border-style: solid;
-        background-color: rgba(30, 30, 46, 0.3); /* base00 */
-        border: 3px solid #D9E0EE; /* base05 */
+        background-color: alpha(@background, 0.3);
+        border: 3px solid @foreground;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
       button:focus,
       button:active,
       button:hover {
-        color: #ABE9B3; /* base0B */
-        background-color: rgba(30, 30, 46, 0.5); /* base00 */
-        border: 3px solid #ABE9B3; /* base0B */
+        color: @color2;
+        background-color: alpha(@background, 0.5);
+        border: 3px solid @color2;
       }
       #logout {
         margin: 10px;
@@ -105,5 +105,8 @@
     source = ./icons;
     recursive = true;
   };
+
+  # Note: colors.css is managed by set-wallpaper.sh script which copies from pywal cache
+  # It cannot be managed by home-manager due to pure evaluation restrictions
 }
 

@@ -1,15 +1,13 @@
 { config, lib, pkgs, ... }:
 
-let
-  vaultPath = "${config.home.homeDirectory}/Documents/Notebook"; # Change if needed
-  gitRepo = "git@github.com:gibbyDev/Notebook.git"; # Change this
-in
 {
   home.packages = with pkgs; [ obsidian ];
 
-  home.file.".config/obsidian" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${vaultPath}";
-  };
+  # NOTE: vault is at ~/Documents/Notebook
+  # Commented out symlink due to pure eval restrictions
+  # home.file.".config/obsidian" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Notebook";
+  # };
 
 #  systemd.user.services.obsidian-git-sync = {
 #    Unit = {

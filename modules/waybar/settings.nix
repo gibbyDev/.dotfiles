@@ -97,7 +97,8 @@
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
       format-disconnected = " ";
-      on-click = "nm-applet &";  # launches nmapplet
+      on-click = "bash $HOME/.dotfiles/scripts/rofi-network.sh";
+
     };
 
     # network = {

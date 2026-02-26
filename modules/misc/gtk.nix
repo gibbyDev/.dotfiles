@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  cacheDir = config.xdg.cacheHome;
+  isValidUser = config.home.username != "REPLACE_USER";
+in
 {
   fonts.fontconfig.enable = true;
 
@@ -33,12 +37,12 @@
       size = 16;
     };
 
-    gtk3.extraCss = ''
-      @import url("file://${config.home.homeDirectory}/.cache/wal/colors.css");
+    gtk3.extraCss = lib.mkIf isValidUser ''
+      @import url("file://${cacheDir}/wal/colors.css");
     '';
 
-    gtk4.extraCss = ''
-      @import url("file://${config.home.homeDirectory}/.cache/wal/colors.css");
+    gtk4.extraCss = lib.mkIf isValidUser ''
+      @import url("file://${cacheDir}/wal/colors.css");
     '';
   };
 

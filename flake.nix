@@ -29,7 +29,7 @@
            && baseName != "result";
     };
 
-    hostDirs = builtins.attrNames (builtins.readDir ./hosts);
+    hostDirs = lib.filter (h: h != "template") (builtins.attrNames (builtins.readDir ./hosts));
 
     mkHost = host:
       lib.nixosSystem {

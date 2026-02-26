@@ -156,17 +156,17 @@
     libGL
     alsa-lib
     (pkgs.stdenv.mkDerivation {
-      pname = "sugar-candy-sddm-theme";
+      pname = "sddm-sugar-dark";
       version = "latest";
       src = pkgs.fetchFromGitHub {
         owner = "MarianArlt";
         repo = "sddm-sugar-dark";
         rev = "master";
-        sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
+        sha256 = "sha256-flOspjpYezPvGZ6b4R/Mr18N7N3JdytCSwwu6mf4owQ=";
       };
       installPhase = ''
         mkdir -p $out/share/sddm/themes/sddm-sugar-dark
-        cp -r * $out/share/sddm/themes/sddm-sugar-dark
+        cp -r . $out/share/sddm/themes/sddm-sugar-dark
       '';
     })
 

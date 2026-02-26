@@ -201,65 +201,167 @@
     }
   '';
 
-  xdg.configFile."rofi/fullscreen-grid.rasi".text = ''
-    @import "~/.config/rofi/colors.rasi"
+  xdg.configFile."rofi/network.rasi".text = ''
+    @theme "~/.config/rofi/colors.rasi"
+
     configuration {
-  show-icons: true;
-  drun-display-format: "{name}";
-  icon-theme: "Papirus-Dark";
-  location: 5;
-}
+        show-icons: false;
+        display-drun: "";
+        display-run: "";
+        display-window: "";
+        font: "JetBrainsMono Nerd Font 11";
+    }
 
-* {
-  background-color: @background;
-  text-color: @foreground;
-}
+    window {
+        width: 420px;
+        height: 300px;
+        transparency: "real";
+        fullscreen: false;
+        enabled: true;
+        border-radius: 8px;
+        border-color: @foreground;
+        border-width: 2px;
+        background-color: @background;
+        padding: 0.5em;
+    }
 
-window {
-  fullscreen: true;
-  width: 100%;
-  height: 100%;
-  font: "UW Ttyp0 10";
-  background-color: @background;
-}
+    mainbox {
+        orientation: vertical;
+        spacing: 0.5em;
+        padding: 0.5em;
+        background-color: @background;
+    }
 
-prompt { enabled: false; }
+    inputbar {
+        enabled: true;
+        children: [ "entry" ];
+        background-color: @background;
+        border-color: @foreground;
+        border-width: 2px;
+        border-radius: 4px;
+        padding: 0.4em 0.5em;
+        spacing: 0.5em;
+    }
 
-entry  {
-  padding: 10px 0 10px 0;
-  horizontal-align: 0.5;
-  margin: 65px 40% 0 40%;
-  color: @normal-foreground;
-  background-color: @normal-background;
-  font: "UW Ttyp0 11";
-  border-radius: 30px;
-  placeholder: "Search";
-}
+    entry {
+        enabled: true;
+        text-color: @foreground;
+        background-color: @background;
+        placeholder: "Search networks...";
+        placeholder-color: @normal-background;
+    }
 
-listview {
-  columns: 7;
-  margin: 10% 10% 10% 10%;
-}
+    listbox {
+        spacing: 0.5em;
+        padding: 0.25em;
+        background-color: transparent;
+    }
 
-element {
-  padding: 0.8%;
-  margin: 1%;
-  orientation: vertical;
-}
+    listview {
+        enabled: true;
+        columns: 1;
+        lines: 10;
+        cycle: true;
+        dynamic: true;
+        scrollbar: false;
+        layout: vertical;
+        background-color: transparent;
+        text-color: @foreground;
+    }
 
-element selected {
-  text-color: @foreground;
-  background-color: @background;
-  border-radius: 10px;
-}
+    element {
+        enabled: true;
+        spacing: 0.5em;
+        padding: 0.5em 0.6em;
+        cursor: pointer;
+        background-color: transparent;
+        text-color: @foreground;
+        border-radius: 4px;
+    }
 
-element-icon {
-  size: 64;
-}
+    element selected {
+        background-color: @foreground;
+        text-color: @background;
+    }
 
-element-text {
-  horizontal-align: 0.5;
-}
+    element-text {
+        cursor: inherit;
+        background-color: transparent;
+        text-color: inherit;
+    }
+
+    element-icon {
+        size: 1.2em;
+        background-color: transparent;
+        text-color: inherit;
+    }
+
+    textbox {
+        text-color: @foreground;
+        background-color: @background;
+        padding: 0.5em;
+        border-radius: 4px;
+    }
+  '';
+
+  xdg.configFile."rofi/fullscreen-grid.rasi".text = ''
+    @theme "~/.config/rofi/colors.rasi"
+    configuration {
+      show-icons: true;
+      drun-display-format: "{name}";
+      icon-theme: "Papirus-Dark";
+      location: 5;
+    }
+
+    * {
+      background-color: @background;
+      text-color: @foreground;
+    }
+
+    window {
+      fullscreen: true;
+      width: 100%;
+      height: 100%;
+      font: "UW Ttyp0 10";
+      background-color: @background;
+    }
+
+    prompt { enabled: false; }
+
+    entry  {
+      padding: 10px 0 10px 0;
+      horizontal-align: 0.5;
+      margin: 65px 40% 0 40%;
+      color: @normal-foreground;
+      background-color: @normal-background;
+      font: "UW Ttyp0 11";
+      border-radius: 30px;
+      placeholder: "Search";
+    }
+
+    listview {
+      columns: 7;
+      margin: 10% 10% 10% 10%;
+    }
+
+    element {
+      padding: 0.8%;
+      margin: 1%;
+      orientation: vertical;
+    }
+
+    element selected {
+      text-color: @foreground;
+      background-color: @background;
+      border-radius: 10px;
+    }
+
+    element-icon {
+      size: 64;
+    }
+
+    element-text {
+      horizontal-align: 0.5;
+    }
   '';
 }
-

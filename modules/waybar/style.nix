@@ -24,21 +24,24 @@ in
 
     .modules-left {
         background-color: @color0;
-        border-radius: 0px;
+        opacity: 0.9;
+        border-radius: 4px;
         padding-right: 8px;
         padding-left: 15px;
     }
 
     .modules-center {
         background-color: @color0;
-        border-radius: 0px;
+        border-radius: 4px;
+        opacity: 0.9;
         padding-right: 10px;
         padding-left: 10px;
     }
 
     .modules-right {
         background-color: @color0;
-        border-radius: 0;
+        border-radius: 4px;
+        opacity: 0.9;
         padding-right: 15px;
         padding-left: 15px;
     }
