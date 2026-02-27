@@ -60,7 +60,6 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true; # important for Hyprland
-      theme = "sddm-sugar-dark";
     };
 
     pipewire = {
@@ -128,6 +127,7 @@
     alsa-utils # Audio support
     v4l-utils # Video4Linux tools
     pipewire
+    libsForQt5.qt5.qtmultimedia
     qemu
     libvirt
     virt-manager
@@ -155,21 +155,6 @@
     mesa
     libGL
     alsa-lib
-    (pkgs.stdenv.mkDerivation {
-      pname = "sddm-sugar-dark";
-      version = "latest";
-      src = pkgs.fetchFromGitHub {
-        owner = "MarianArlt";
-        repo = "sddm-sugar-dark";
-        rev = "master";
-        sha256 = "sha256-flOspjpYezPvGZ6b4R/Mr18N7N3JdytCSwwu6mf4owQ=";
-      };
-      installPhase = ''
-        mkdir -p $out/share/sddm/themes/sddm-sugar-dark
-        cp -r . $out/share/sddm/themes/sddm-sugar-dark
-      '';
-    })
-
   ];
 
   # Optional: Specify the SDDM theme configuration
@@ -177,7 +162,7 @@
   #   [Theme]
   #   Current=sddm-sugar-dark
   # '';
-  #
+
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
