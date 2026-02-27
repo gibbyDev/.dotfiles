@@ -3,18 +3,29 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     stash.url = "github:NotAShelf/stash";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nur, ... }@inputs:
    let
      lib = nixpkgs.lib;
      system = "x86_64-linux";
 
-     customOverlays = builtins.attrValues (import ./overlays);
+      customOverlays = builtins.attrValues (import ./overlays) ++ [
+        # Override kdenlive with stable version to work around ffmpeg shaderc issue
+        (final: prev: {
+          kdenlive = let
+            stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          in stable.kdenlive;
+        })
+      ];
 
      pkgs = import nixpkgs {
        inherit system;

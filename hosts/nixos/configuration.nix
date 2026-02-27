@@ -124,8 +124,7 @@
     gcc
     gdb
     networkmanagerapplet
-    # kdenlive - Temporarily disabled due to ffmpeg shaderc build issue in nixpkgs
-    # TODO: Re-enable when nixpkgs issue is fixed
+    kdenlive
     pywalfox-native
     vlc
     xcolor
