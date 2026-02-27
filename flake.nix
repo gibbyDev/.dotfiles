@@ -10,15 +10,17 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
-  let
-    lib = nixpkgs.lib;
-    system = "x86_64-linux";
+   let
+     lib = nixpkgs.lib;
+     system = "x86_64-linux";
 
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [ nur.overlays.default ];
-      config.allowUnfree = true;
-    };
+     customOverlays = builtins.attrValues (import ./overlays);
+
+     pkgs = import nixpkgs {
+       inherit system;
+       overlays = customOverlays ++ [ nur.overlays.default ];
+       config.allowUnfree = true;
+     };
 
     src = lib.cleanSourceWith {
       src = ./.;
@@ -31,25 +33,29 @@
 
     hostDirs = lib.filter (h: h != "template") (builtins.attrNames (builtins.readDir ./hosts));
 
-    mkHost = host:
-      lib.nixosSystem {
-        inherit system;
+     mkHost = host:
+       lib.nixosSystem {
+         inherit system;
 
-        specialArgs = {
-          inherit inputs src;
-        };
+         specialArgs = {
+           inherit inputs src;
+         };
 
-        modules = [
-          ./hosts/${host}/configuration.nix
+         modules = [
+           ./hosts/${host}/configuration.nix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs src; };
-          }
-        ];
-      };
+           {
+             nixpkgs.overlays = customOverlays;
+           }
+
+           home-manager.nixosModules.home-manager
+           {
+             home-manager.useGlobalPkgs = true;
+             home-manager.useUserPackages = true;
+             home-manager.extraSpecialArgs = { inherit inputs src; };
+           }
+         ];
+       };
 
   in
   {
