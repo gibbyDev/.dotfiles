@@ -53,14 +53,18 @@
     xserver = {
       enable = true;
       xkb.layout = "us";
-      displayManager.sddm.enable = true;
-      displayManager.defaultSession = "hyprland";
+      displayManager.lightdm = {
+        enable = true;
+        greeters.gtk = {
+          enable = true;
+          theme.name = "Adwaita-dark";
+          iconTheme.name = "Papirus-Dark";
+          cursorTheme.name = "Bibata-Modern-Ice";
+        };
+      };
     };
 
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true; # important for Hyprland
-    };
+    displayManager.defaultSession = "hyprland";
 
     pipewire = {
       enable = true;
@@ -114,8 +118,6 @@
     gdb
     networkmanagerapplet
     pywalfox-native
- #   droidcam
-#    kdenlive
     vlc
     xcolor
     adb-sync
@@ -155,13 +157,11 @@
     mesa
     libGL
     alsa-lib
+    # LightDM and themes
+    adwaita-icon-theme
+    papirus-icon-theme
+    bibata-cursors
   ];
-
-  # Optional: Specify the SDDM theme configuration
-  # environment.etc."sddm.conf".text = lib.mkForce ''
-  #   [Theme]
-  #   Current=sddm-sugar-dark
-  # '';
 
   # Miscellaneous Settings
   nixpkgs.config.allowUnfree = true;
