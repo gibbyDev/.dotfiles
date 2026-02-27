@@ -48,7 +48,7 @@
         transition: 20ms;
       }
       window {
-        background-color: alpha(@background, 0.8);
+        background-color: alpha(@background, 0.9);
       }
       button {
         color: @foreground;

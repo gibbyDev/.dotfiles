@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   ...
 }: {
   programs.hyprlock = {
@@ -13,33 +14,53 @@
       };
       background = [
         {
-          # path = config.stylix.image;
+          # Wallpaper path will be managed by set-wallpaper.sh script
+          # which symlinks the current wallpaper to this location
+          path = "$HOME/.cache/hyprlock_wallpaper";
           blur_passes = 3;
-          blur_size = 8;
+          blur_size = 3;
         }
       ];
-      # image = [
-      #   {
-      #     path = "";
-      #     size = 150;
-      #     border_size = 4;
-      #     border_color = "rgb(0C96F9)";
-      #     rounding = -1; # Negative means circle
-      #     position = "0, 200";
-      #     halign = "center";
-      #     valign = "center";
-      #   }
-      # ];
-      input-field = [
+      image = [
+        {
+          path = "$HOME/.dotfiles/modules/fastfetch/me.png";
+          size = 150;
+          border_size = 4;
+          # Border color will use color4 from pywal
+          border_color = "rgb(142, 115, 113)";
+          rounding = -1; # Negative means circle
+          position = "0, 200";
+          halign = "center";
+          valign = "center";
+        }
+       ];
+       label = [
+         {
+           # Media player information
+           monitor = "";
+           text = "cmd[update:1000] $HOME/.local/share/bin/media-player-info.sh";
+           text_align = "center";
+           font_size = 12;
+           font_family = "Monospace";
+           position = "0, 100";
+           halign = "center";
+           valign = "center";
+           color = "rgb(205, 188, 187)";
+         }
+       ];
+       input-field = [
         {
           size = "200, 50";
           position = "0, -80";
           monitor = "";
           dots_center = true;
           fade_on_empty = false;
-          font_color = "rgb(CFE6F4)";
-          inner_color = "rgb(657DC2)";
-          outer_color = "rgb(0D0E15)";
+          # Foreground color from pywal
+          font_color = "rgb(205, 188, 187)";
+          # Color2 from pywal for inner color
+          inner_color = "rgb(118, 96, 95)";
+          # Background from pywal for outer color
+          outer_color = "rgb(10, 10, 10)";
           outline_thickness = 5;
           placeholder_text = "Password...";
           shadow_passes = 2;

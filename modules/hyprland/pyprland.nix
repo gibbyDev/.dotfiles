@@ -9,8 +9,8 @@ plugins = ["scratchpads"]
 animation = "fromTop"
 command = "kitty --class floating-term"
 class = "floating-term"
-size = "70% 50%"
-position = "center top"
+size = "60% 60%"
+position = ""
 on_open = "move cursor 0 0"
 lazy = true
   '';

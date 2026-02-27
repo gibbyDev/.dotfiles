@@ -2,7 +2,7 @@
 
 let
   cacheDir = config.xdg.cacheHome;
-  isValidUser = config.home.username != "REPLACE_USER";
+  isValidUser = config.home.username != "cody";
 in
 {
   fonts.fontconfig.enable = true;

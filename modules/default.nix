@@ -12,6 +12,7 @@
     ./wlogout
     ./yazi
     ./nvim
+    ./posting
     ./code
     ./fastfetch
   ];

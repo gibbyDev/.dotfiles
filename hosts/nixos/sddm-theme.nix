@@ -1,3 +1,5 @@
+{ pkgs }:
+
 pkgs.stdenv.mkDerivation {
   name = "sddm-theme";
   src = pkgs.fetchFromGitHub {

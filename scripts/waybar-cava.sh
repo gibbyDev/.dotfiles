@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-bar="▁▂▃▄▅▆▇█"
+bar="▁ ▂ ▃ ▄ ▅ ▆ ▇ █"
 dict="s/;//g"
 for ((i=0; i<${#bar}; i++)); do
   dict+=";s/$i/${bar:$i:1}/g"

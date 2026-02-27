@@ -125,12 +125,12 @@
     gdb
     networkmanagerapplet
     kdenlive
+    postman
     pywalfox-native
     vlc
     xcolor
     adb-sync
     wl-clipboard
-    stash
     nwg-look
     libsForQt5.qt5.qtgraphicaleffects
     linuxPackages.v4l2loopback # Kernel module for virtual webcam
@@ -145,6 +145,10 @@
     dnsmasq # DHCP for VM networking
     ebtables # NAT support for VMs
     grim
+    nload
+    htop
+    atop
+    iftop
     slurp
     grimblast
     swappy

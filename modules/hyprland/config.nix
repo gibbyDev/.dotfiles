@@ -110,7 +110,8 @@
         "SUPER, Tab, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh w"
         "SUPER+SHIFT, E, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh f"
 
-        "SUPER, V, exec, stash list | rofi -dmenu | stash decode | wl-copy"
+        "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        "CTRL SHIFT, ESCAPE, exec, kitty -e btop -t"
 
         "SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
 
