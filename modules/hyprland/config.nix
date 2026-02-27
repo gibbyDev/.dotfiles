@@ -52,20 +52,24 @@
         blur = {
           enabled = true;
           size = 6;
-          passes = 2;
+          passes = 4;
         };
       };
 
-      animations = {
-        enabled = false;
-        bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
-        animation = [
-          "windows, 1, 3, myBezier"
-          "border, 1, 10, default"
-          "fade, 1, 10, default"
-          "workspaces, 1, 2, default"
-        ];
-      };
+       animations = {
+         enabled = true;
+         bezier = [
+           "myBezier, 0.05, 0.9, 0.1, 1.05"
+           "dropdownCurve, 0.34, 1.56, 0.64, 1"
+         ];
+         animation = [
+           "windows, 1, 3, myBezier"
+           "border, 1, 10, default"
+           "fade, 1, 10, default"
+           "workspaces, 1, 2, default"
+           "windowsMove, 1, 2, dropdownCurve"
+         ];
+       };
 
       misc = {
         vrr = 0;
@@ -91,7 +95,7 @@
         "SUPER, W, togglefloating"
         "SUPER, G, togglegroup"
         "ALT, Return, fullscreen"
-        "SUPER, L, exec, swaylock"
+        "SUPER, L, exec, hyprlock"
         "SUPER+SHIFT, F, exec, $HOME/.local/share/bin/windowpin.sh"
         "SUPER, Backspace, exec, wlogout"
 
@@ -111,6 +115,8 @@
         "SUPER, B, exec, sh -c 'systemctl --user is-active waybar && systemctl --user stop waybar || systemctl --user start waybar'"
 
         "SUPER, K, exec, $HOME/.local/share/bin/keybinds_hint.sh"
+
+        "SUPER, N, exec, swaync-client -t"
 
         ", F10, exec, $HOME/.local/share/bin/volumecontrol.sh -o m"
         ", F11, exec, $HOME/.local/share/bin/volumecontrol.sh -o d"
@@ -194,15 +200,21 @@
         "SUPER+Alt, 8, movetoworkspacesilent, 8"
         "SUPER+Alt, 9, movetoworkspacesilent, 9"
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
-      ];
-#
-      # rule = [
-      #   "float,class:(floating-term)"
-      #   "center,class:(floating-term)"
-      #   "size 400 200,class:(floating-term)"
-      #   "opacity 0.95 0.8,class:firefox"
-      # ];
-    };
-  };
-}
+       ];
+
+       windowrulev2 = [
+         # Floating dropdown terminal (SUPER+ALT+T)
+         "float,class:(floating-term)"
+         "center,class:(floating-term)"
+         "size 70% 50%,class:(floating-term)"
+         "move 15% 5%,class:(floating-term)"
+         "opacity 0.95 0.95,class:(floating-term)"
+         "animation slide,class:(floating-term)"
+
+         # Firefox opacity
+         "opacity 0.95 0.8,class:(firefox)"
+       ];
+     };
+   };
+ }
 
