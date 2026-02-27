@@ -30,8 +30,8 @@ let
     POSTING_THEME_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/posting/themes"
     mkdir -p "$POSTING_THEME_DIR"
     
-    # Generate theme from pywal colors
-    cat > "$POSTING_THEME_DIR/pywal.yaml" <<'EOF'
+    # Generate theme from pywal colors with proper variable substitution
+    cat > "$POSTING_THEME_DIR/pywal.yaml" <<THEMEOF
     # Posting theme generated from pywal colors
     name: pywal
     primary: '$COLOR4'       # Blue from wal
@@ -78,10 +78,10 @@ let
     variable:
       resolved: "black on $COLOR2"
       unresolved: "black on $COLOR1"
-    EOF
+    THEMEOF
     
     echo "Generated posting theme at $POSTING_THEME_DIR/pywal.yaml"
-    echo "Add 'theme: pywal' to your posting config.yaml"
+    echo "Restart posting to see the new colors"
   '';
 
 in
