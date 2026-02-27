@@ -202,17 +202,16 @@
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
        ];
 
-       windowrulev2 = [
+       windowrule = [
          # Floating dropdown terminal (SUPER+ALT+T)
-         "float,class:(floating-term)"
-         "center,class:(floating-term)"
-         "size 70% 50%,class:(floating-term)"
-         "move 15% 5%,class:(floating-term)"
-         "opacity 0.95 0.95,class:(floating-term)"
-         "animation slide,class:(floating-term)"
+         "float,class:floating-term"
+         "center,class:floating-term"
+         "size 70% 50%,class:floating-term"
+         "move 15% 5%,class:floating-term"
+         "opacity 0.95 0.95,class:floating-term"
 
          # Firefox opacity
-         "opacity 0.95 0.8,class:(firefox)"
+         "opacity 0.95 0.8,class:firefox"
        ];
      };
    };
