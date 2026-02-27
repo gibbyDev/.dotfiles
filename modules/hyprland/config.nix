@@ -9,7 +9,7 @@
         "networkmanagerapplet --indicator &"
         "$HOME/.local/share/bin/set-wallpaper.sh &"
         "${pkgs.stash}/bin/stash watch &"
-        "pypr"
+        "${pkgs.pyprland}/bin/pypr &"
       ];
 
       env = [
