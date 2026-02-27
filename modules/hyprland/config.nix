@@ -99,11 +99,11 @@
         "SUPER+SHIFT, F, exec, $HOME/.local/share/bin/windowpin.sh"
         "SUPER, Backspace, exec, wlogout"
 
-        "SUPER, T, exec, kitty"
-        "SUPER, E, exec, kitty -e yazi"
-        "SUPER, C, exec, kitty -e nvim"
-        "SUPER, F, exec, firefox"
-        "SUPER+Alt, T, exec, kitty --class floating-term"
+         "SUPER, T, exec, kitty"
+         "SUPER, E, exec, kitty -e yazi"
+         "SUPER, C, exec, kitty -e nvim"
+         "SUPER, F, exec, firefox"
+         "SUPER+ALT, T, exec, pypr toggle term"
 
 
         "SUPER, A, exec, pkill -x rofi || $HOME/.local/share/bin/rofilaunch.sh d"
@@ -200,18 +200,6 @@
         "SUPER+Alt, 8, movetoworkspacesilent, 8"
         "SUPER+Alt, 9, movetoworkspacesilent, 9"
         "SUPER+Alt, 0, movetoworkspacesilent, 10"
-       ];
-
-       windowrule = [
-         # Floating dropdown terminal (SUPER+ALT+T)
-         "float,class:floating-term"
-         "center,class:floating-term"
-         "size 70% 50%,class:floating-term"
-         "move 15% 5%,class:floating-term"
-         "opacity 0.95 0.95,class:floating-term"
-
-         # Firefox opacity
-         "opacity 0.95 0.8,class:firefox"
        ];
      };
    };

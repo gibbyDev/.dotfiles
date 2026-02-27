@@ -7,10 +7,11 @@ plugins = ["scratchpads"]
 
 [scratchpads.term]
 animation = "fromTop"
-command = "kitty --class dropterm"
-class = "dropterm"
-size = "70% 70%"
-position = "center"
+command = "kitty --class floating-term"
+class = "floating-term"
+size = "70% 50%"
+position = "center top"
+on_open = "move cursor 0 0"
 lazy = true
   '';
 }
