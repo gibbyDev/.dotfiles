@@ -124,6 +124,8 @@
     gcc
     gdb
     networkmanagerapplet
+    # kdenlive - Temporarily disabled due to ffmpeg shaderc build issue in nixpkgs
+    # TODO: Re-enable when nixpkgs issue is fixed
     pywalfox-native
     vlc
     xcolor
@@ -164,11 +166,9 @@
     mesa
     libGL
     alsa-lib
-     # LightDM and themes
     adwaita-icon-theme
     papirus-icon-theme
     bibata-cursors
-    # Bluetooth
     blueman
   ];
 
