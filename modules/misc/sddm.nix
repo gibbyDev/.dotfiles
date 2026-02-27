@@ -1,28 +1,37 @@
 { config, pkgs, lib, ... }:
 
 let
-  sddmTheme = pkgs.sddm-sugar-dark-theme;
+  # Define the sugar-dark theme with proper installation
+  sugar-dark-theme = pkgs.stdenv.mkDerivation {
+    name = "sddm-sugar-dark-theme";
+    src = pkgs.fetchFromGitHub {
+      owner = "MarianArlt";
+      repo = "sddm-sugar-dark";
+      rev = "ceb2c455663429be03ba62d9f898c571650ef7fe";
+      sha256 = "0153z1kylbhc9d12nxy9vpn0spxgrhgy36wy37pk6ysq7akaqlvy";
+    };
+    dontBuild = true;
+    installPhase = ''
+      mkdir -p $out/share/sddm/themes/sugar-dark
+      cp -R ./* $out/share/sddm/themes/sugar-dark/
+    '';
+  };
 in
 {
   services.displayManager.sddm = {
     enable = true;
-
-    # Wayland support (important for Hyprland)
     wayland.enable = true;
-
-    # Use the custom sugar-dark theme from pkgs overlay
-    theme = "sugar-dark";
     package = lib.mkForce pkgs.kdePackages.sddm;
 
-    # Add theme and dependencies to system packages
-    extraPackages = with pkgs; [
-      sddm-sugar-dark-theme
-      kdePackages.qtsvg
-      kdePackages.qtmultimedia
-      kdePackages.qtvirtualkeyboard
+    # Bundle the theme with system packages so it's available to SDDM
+    extraPackages = [
+      sugar-dark-theme
+      pkgs.kdePackages.qtsvg
+      pkgs.kdePackages.qtmultimedia
+      pkgs.kdePackages.qtvirtualkeyboard
     ];
 
-    # Optional but recommended
+    # Configure SDDM to use the sugar-dark theme
     settings = {
       General = {
         Session = "hyprland";
@@ -30,14 +39,12 @@ in
       Theme = {
         Current = "sugar-dark";
         CursorTheme = "Bibata-Modern-Ice";
-        Font = "JetBrainsMono Nerd Font";
       };
     };
   };
 
-  # Ensure theme is available in system packages
-  environment.systemPackages = with pkgs; [
-    sddm-sugar-dark-theme
+  environment.systemPackages = [
+    sugar-dark-theme
   ];
 }
 
