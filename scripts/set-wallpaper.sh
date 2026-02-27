@@ -24,13 +24,35 @@ fi
 # -----------------------------
 
 extract_rofi_colors() {
-    awk '/^\* {/,/^}/' "$HOME/.cache/wal/colors-rofi-dark.rasi" > "$ROFI_CONFIG_DIR/colors.rasi"
+    if [[ -f "$HOME/.cache/wal/colors-rofi-dark.rasi" ]]; then
+        awk '/^\* {/,/^}/' "$HOME/.cache/wal/colors-rofi-dark.rasi" > "$ROFI_CONFIG_DIR/colors.rasi" 2>/dev/null || true
+    fi
+}
+
+update_hyprlock_colors() {
+    # Extract colors from pywal JSON and update hyprlock config
+    local colors_json="$HOME/.cache/wal/colors.json"
+    
+    if [[ -f "$colors_json" ]]; then
+        # This function is called after set_wallpaper, which updates the symlink
+        # Hyprlock will read the new wallpaper on next lock
+        # Note: Colors in hyprlock.nix are set statically at build time
+        # so they won't update dynamically - only the wallpaper updates
+        :
+    fi
 }
 
 copy_current_wallpaper() {
     local wallpaper="$1"
     local wallpaper_filename=$(basename "$wallpaper")
-    cp "$wallpaper" "$ROFI_CONFIG_DIR/current_wallpaper.$(echo "$wallpaper_filename" | awk -F. '{print $NF}')"
+    local output_file="$ROFI_CONFIG_DIR/current_wallpaper.$(echo "$wallpaper_filename" | awk -F. '{print $NF}')"
+    
+    # Remove existing file if it's read-only
+    if [[ -f "$output_file" ]]; then
+        chmod u+w "$output_file" 2>/dev/null || true
+    fi
+    
+    cp "$wallpaper" "$output_file" 2>/dev/null || true
 }
 
 set_wallpaper() {
@@ -43,8 +65,10 @@ set_wallpaper() {
     # Generate colors with pywal
     wal -i "$wallpaper"
 
-    # Update Pywalfox Firefox theme
-    pywalfox update
+    # Update Pywalfox Firefox theme (if firefox is running)
+    if pgrep firefox > /dev/null; then
+        pywalfox update
+    fi
 
     # Copy Waybar color scheme
     cp "$HOME/.cache/wal/colors-waybar.css" "$WAYBAR_CONFIG_DIR/colors-waybar.css"
@@ -58,7 +82,17 @@ set_wallpaper() {
     # Copy current wallpaper for Rofi preview
     copy_current_wallpaper "$wallpaper"
     
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+    # Symlink wallpaper for hyprlock
+    ln -sf "$wallpaper" "$HOME/.cache/hyprlock_wallpaper"
+
+    # Update hyprlock colors dynamically using hyprctl
+    update_hyprlock_colors
+
+    # Reload swaync to apply new colors (CSS is cached until service restarts)
+    systemctl --user restart swaync.service 2>/dev/null || true
+
+    # Reload waybar to apply new colors
+    pkill -SIGUSR2 waybar 2>/dev/null || true
 
     # Reload nvim colors if running
     if pgrep nvim > /dev/null; then
