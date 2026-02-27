@@ -73,6 +73,13 @@
       pulse.enable = true;
       jack.enable = true;
     };
+
+    blueman.enable = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
   virtualisation = {
@@ -157,10 +164,12 @@
     mesa
     libGL
     alsa-lib
-    # LightDM and themes
+     # LightDM and themes
     adwaita-icon-theme
     papirus-icon-theme
     bibata-cursors
+    # Bluetooth
+    blueman
   ];
 
   # Miscellaneous Settings
