@@ -1,7 +1,10 @@
 { config, pkgs, inputs, lib, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ]; # Include hardware scan results.
+  imports = [ 
+    ./hardware-configuration.nix # Include hardware scan results.
+    ../../modules/lightdm
+  ];
 
   boot.loader.grub = {
     enable = true;
@@ -55,12 +58,6 @@
       xkb.layout = "us";
       displayManager.lightdm = {
         enable = true;
-        greeters.gtk = {
-          enable = true;
-          theme.name = "Adwaita-dark";
-          iconTheme.name = "Papirus-Dark";
-          cursorTheme.name = "Bibata-Modern-Ice";
-        };
       };
     };
 
@@ -76,6 +73,9 @@
 
     blueman.enable = true;
   };
+
+  # Enable aqua LightDM webkit theme
+  services.lightdm.aqua-theme.enable = true;
 
   hardware.bluetooth = {
     enable = true;

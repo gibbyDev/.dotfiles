@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./aqua-theme.nix
+  ];
+}
