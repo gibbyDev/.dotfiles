@@ -74,8 +74,7 @@
     blueman.enable = true;
   };
 
-  # Enable aqua LightDM webkit theme
-  services.lightdm.aqua-theme.enable = true;
+
 
   hardware.bluetooth = {
     enable = true;

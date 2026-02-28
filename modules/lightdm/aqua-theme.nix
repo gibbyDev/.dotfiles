@@ -24,38 +24,22 @@ let
   };
 in
 {
-  options = {
-    services.lightdm.aqua-theme.enable = lib.mkEnableOption "aqua LightDM webkit theme";
-  };
-
-  config = lib.mkIf config.services.lightdm.aqua-theme.enable {
-    # Ensure theme files are available
-    environment.systemPackages = [ aqua-theme ];
+  config = lib.mkIf config.services.xserver.displayManager.lightdm.enable {
+    # Install the aqua theme (for future webkit greeter use)
+    environment.systemPackages = [
+      aqua-theme
+    ];
 
     # Create symlink for theme to be accessible to lightdm
-    system.activationScripts.aqua-lightdm-theme = ''
-      mkdir -p /usr/share/lightdm-webkit/themes
-      if [ -L /usr/share/lightdm-webkit/themes/aqua ]; then
-        rm /usr/share/lightdm-webkit/themes/aqua
-      fi
-      ln -sf ${aqua-theme}/share/lightdm-webkit/themes/aqua /usr/share/lightdm-webkit/themes/aqua
-    '';
-
-    # Create lightdm-webkit2-greeter config
-    environment.etc."lightdm/lightdm-webkit2-greeter.conf" = {
+    system.activationScripts.aqua-lightdm-theme = {
       text = ''
-        [General]
-        webkit-theme = aqua
-        debug-mode = false
+        mkdir -p /usr/share/lightdm-webkit/themes
+        if [ -L /usr/share/lightdm-webkit/themes/aqua ]; then
+          rm /usr/share/lightdm-webkit/themes/aqua
+        fi
+        ln -sf ${aqua-theme}/share/lightdm-webkit/themes/aqua /usr/share/lightdm-webkit/themes/aqua
       '';
-    };
-
-    # Update lightdm.conf to use webkit2 greeter
-    environment.etc."lightdm/lightdm.conf" = lib.mkIf config.services.xserver.displayManager.lightdm.enable {
-      text = lib.mkForce ''
-        [General]
-        greeter-session=lightdm-webkit2
-      '';
+      deps = [];
     };
   };
 }
