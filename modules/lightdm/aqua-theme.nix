@@ -7,7 +7,7 @@ let
 
     src = pkgs.fetchzip {
       url = "https://github.com/paysonwallach/aqua-lightdm-webkit-theme/archive/master.zip";
-      sha256 = "sha256-042pphz30iarxkch4xsi54g6v2i4zyj73zyigix23zd5vwjgcygs";
+      sha256 = "sha256-+nn2JN+l/SF6fNH/caT/JIptHilRdwLZ7FlFMD68VxA=";
       stripRoot = true;
     };
 
@@ -19,7 +19,6 @@ let
     meta = with pkgs.lib; {
       description = "macOS-inspired LightDM Webkit greeter theme";
       homepage = "https://github.com/paysonwallach/aqua-lightdm-webkit-theme";
-      license = licenses.hip;
       platforms = platforms.linux;
     };
   };
@@ -30,8 +29,8 @@ in
   };
 
   config = lib.mkIf config.services.lightdm.aqua-theme.enable {
-    # Ensure theme files and webkit2 greeter are available
-    environment.systemPackages = [ aqua-theme pkgs.lightdm_webkit2 ];
+    # Ensure theme files are available
+    environment.systemPackages = [ aqua-theme ];
 
     # Create symlink for theme to be accessible to lightdm
     system.activationScripts.aqua-lightdm-theme = ''

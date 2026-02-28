@@ -55,6 +55,80 @@ copy_current_wallpaper() {
     cp "$wallpaper" "$output_file" 2>/dev/null || true
 }
 
+generate_posting_theme() {
+    # Generate posting theme from pywal colors
+    local WAL_COLORS="${XDG_CACHE_HOME:-$HOME/.cache}/wal/colors"
+    
+    if [ ! -f "$WAL_COLORS" ]; then
+        return
+    fi
+    
+    # Read colors from wal
+    mapfile -t COLORS < "$WAL_COLORS"
+    
+    # Extract colors (wal provides 16 colors)
+    BG="${COLORS[0]}"          # background
+    COLOR1="${COLORS[1]}"      # red
+    COLOR2="${COLORS[2]}"      # green
+    COLOR3="${COLORS[3]}"      # yellow
+    COLOR4="${COLORS[4]}"      # blue
+    COLOR5="${COLORS[5]}"      # magenta
+    COLOR6="${COLORS[6]}"      # cyan
+    
+    POSTING_THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/posting/themes"
+    mkdir -p "$POSTING_THEME_DIR"
+    
+    # Generate theme from pywal colors with proper variable substitution
+    cat > "$POSTING_THEME_DIR/pywal.yaml" <<THEMEOF
+# Posting theme generated from pywal colors
+name: pywal
+primary: '$COLOR4'       # Blue from wal
+secondary: '$COLOR3'     # Yellow from wal
+accent: '$COLOR6'        # Cyan from wal
+background: '$BG'        # Black background from wal
+surface: '$COLOR1'       # Dark red for panels
+panel: '$COLOR2'         # Green for panel backgrounds
+error: '$COLOR1'         # Red for errors
+success: '$COLOR2'       # Green for success
+warning: '$COLOR3'       # Yellow for warnings
+dark: true
+
+author: "pywal"
+description: "Posting theme synchronized with pywal colors"
+
+text_area:
+  gutter: "bold $COLOR6"
+  cursor: "reverse"
+  cursor_line: "dim"
+  selection: "reverse"
+
+url:
+  base: "italic $COLOR6"
+  protocol: "bold $COLOR4"
+  separator: "dim"
+
+syntax:
+  json_key: "italic $COLOR4"
+  json_string: "$COLOR2"
+  json_number: "$COLOR6"
+  json_boolean: "$COLOR2"
+  json_null: "underline $COLOR6"
+
+method:
+  get: "$COLOR4"
+  post: "$COLOR2"
+  put: "$COLOR3"
+  delete: "$COLOR1"
+  patch: "$COLOR6"
+  options: "$COLOR5"
+  head: "$COLOR5"
+
+variable:
+  resolved: "black on $COLOR2"
+  unresolved: "black on $COLOR1"
+THEMEOF
+}
+
 set_wallpaper() {
     local wallpaper="${WALLPAPERS[$CURRENT_INDEX]}"
     echo "Setting wallpaper: $wallpaper"
@@ -64,6 +138,9 @@ set_wallpaper() {
 
     # Generate colors with pywal
     wal -i "$wallpaper"
+
+    # Generate posting theme from the new pywal colors
+    generate_posting_theme
 
     # Update Pywalfox Firefox theme (if firefox is running)
     if pgrep firefox > /dev/null; then

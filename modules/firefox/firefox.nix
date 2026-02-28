@@ -22,6 +22,7 @@ in
                   { name = "ChatGPT"; url = "https://chatgpt.com"; }
                   { name = "Hostinger"; url = "https://hostinger.com"; }
                   { name = "NixOS"; url = "https://nixos.org"; }
+                  { name = "Servers"; bookmarks = [ { name = "8080"; url = "https://localhost:8080"; } { name = "3000"; url = "https://localhost:3000"; } { name = "5000"; url = "https://localhost:5000"; } ]; }
                 ];
               }
               {
@@ -40,6 +41,16 @@ in
                   { name = "Gmail"; url = "https://gmail.com"; }
                 ];
               }
+
+              {
+                name = "Social";
+                bookmarks = [
+                  { name = "LinkedIn"; url = "https://linkedin.com"; }
+                  { name = "YouTube"; url = "https://youtube.com"; }
+                  { name = "YouTube Studio"; url = "https://studio.youtube.com/channel/UCrWyV9qsJOPCF2af1gYzDeQ"; }
+                ];
+              }
+
 
               # You can still mix in loose bookmarks if you want
               { name = "Search"; url = "https://duckduckgo.com"; }
