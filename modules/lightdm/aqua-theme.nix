@@ -55,8 +55,6 @@ in
       text = lib.mkForce ''
         [General]
         greeter-session=lightdm-webkit2
-        session-wrapper=/etc/lightdm/Xsession
-        user-session=hyprland
       '';
     };
   };
